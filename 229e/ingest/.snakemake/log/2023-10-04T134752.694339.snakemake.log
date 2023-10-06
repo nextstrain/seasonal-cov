@@ -1,0 +1,43 @@
+Building DAG of jobs...
+Using shell: /Users/katekistler/.nextstrain/runtimes/conda/env/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+curate                 1              1              1
+subset_metadata        1              1              1
+total                  2              1              1
+
+Select jobs to execute...
+
+[Wed Oct  4 13:47:53 2023]
+rule curate:
+    input: data/ncbi.ndjson, data/all-geolocation-rules.tsv, config/annotations.tsv
+    output: results/all_metadata.tsv, results/sequences.fasta
+    log: logs/curate.txt
+    jobid: 1
+    benchmark: benchmarks/curate.txt
+    reason: Missing output files: results/all_metadata.tsv
+    resources: tmpdir=/var/folders/g_/6938g_6s199gxxswt2nf7w500000gn/T
+
+
+        (cat data/ncbi.ndjson             | ./vendored/transform-field-names                 --field-map Accession=accession Isolate Lineage=strain Geographic Region=region Geographic Location=country Isolate Collection date=date Host Name=host Submitter Names=authors Submitter Affiliation=institution SRA Accessions=sra_accession             | augur curate normalize-strings             | augur curate format-dates                 --date-fields date                 --expected-date-formats %Y %Y-%m %Y-%m-%d %Y-%m-%dT%H:%M:%SZ             | ./vendored/transform-genbank-location             | augur curate titlecase                 --titlecase-fields region country division location                 --articles and d de del des di do en l la las le los nad of op sur the y                 --abbreviations USA             | ./vendored/transform-authors                 --authors-field authors                 --default-value ?                 --abbr-authors-field abbr_authors             | ./vendored/apply-geolocation-rules                 --geolocation-rules data/all-geolocation-rules.tsv             | ./vendored/merge-user-metadata                 --annotations config/annotations.tsv                 --id-field accession             | augur curate passthru                 --output-metadata results/all_metadata.tsv                 --output-fasta results/sequences.fasta                 --output-id-field accession                 --output-seq-field sequence ) 2>> logs/curate.txt
+        
+[Wed Oct  4 13:47:55 2023]
+Error in rule curate:
+    jobid: 1
+    input: data/ncbi.ndjson, data/all-geolocation-rules.tsv, config/annotations.tsv
+    output: results/all_metadata.tsv, results/sequences.fasta
+    log: logs/curate.txt (check log file(s) for error details)
+    shell:
+        
+        (cat data/ncbi.ndjson             | ./vendored/transform-field-names                 --field-map Accession=accession Isolate Lineage=strain Geographic Region=region Geographic Location=country Isolate Collection date=date Host Name=host Submitter Names=authors Submitter Affiliation=institution SRA Accessions=sra_accession             | augur curate normalize-strings             | augur curate format-dates                 --date-fields date                 --expected-date-formats %Y %Y-%m %Y-%m-%d %Y-%m-%dT%H:%M:%SZ             | ./vendored/transform-genbank-location             | augur curate titlecase                 --titlecase-fields region country division location                 --articles and d de del des di do en l la las le los nad of op sur the y                 --abbreviations USA             | ./vendored/transform-authors                 --authors-field authors                 --default-value ?                 --abbr-authors-field abbr_authors             | ./vendored/apply-geolocation-rules                 --geolocation-rules data/all-geolocation-rules.tsv             | ./vendored/merge-user-metadata                 --annotations config/annotations.tsv                 --id-field accession             | augur curate passthru                 --output-metadata results/all_metadata.tsv                 --output-fasta results/sequences.fasta                 --output-id-field accession                 --output-seq-field sequence ) 2>> logs/curate.txt
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job curate since they might be corrupted:
+results/sequences.fasta
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-10-04T134752.694339.snakemake.log

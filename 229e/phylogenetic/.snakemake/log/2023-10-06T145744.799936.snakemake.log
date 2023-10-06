@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in rule filter in file /Users/katekistler/nextstrain/cov_229e/phylogenetic/rules/prepare_sequences.smk, line 13:
+Missing input files for rule filter:
+    output: results/filtered.fasta
+    affected files:
+        'host!=Homo sapiens'

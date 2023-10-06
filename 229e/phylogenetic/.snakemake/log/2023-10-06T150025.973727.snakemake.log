@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /Users/katekistler/.nextstrain/runtimes/conda/env/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+align        1
+total        1
+
+Select jobs to execute...
+
+[Fri Oct  6 15:00:26 2023]
+Job 0: 
+        Aligning sequences to config/reference.gb
+          - filling gaps with N
+        
+Reason: Updated input files: results/filtered.fasta
+
+
+        augur align             --sequences results/filtered.fasta             --reference-sequence config/reference.gb             --output results/aligned.fasta             --remove-reference             --fill-gaps
+        
+[Fri Oct  6 15:01:38 2023]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2023-10-06T150025.973727.snakemake.log

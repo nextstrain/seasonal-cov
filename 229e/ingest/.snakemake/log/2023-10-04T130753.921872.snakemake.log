@@ -1,0 +1,3 @@
+SyntaxError in line 67 of /Users/katekistler/nextstrain/cov_229e/ingest/rules/fetch_from_ncbi.smk:
+Unexpected keyword retries in rule definition (fetch_from_ncbi.smk, line 67)
+  File "/Users/katekistler/nextstrain/cov_229e/ingest/Snakefile", line 5, in <module>

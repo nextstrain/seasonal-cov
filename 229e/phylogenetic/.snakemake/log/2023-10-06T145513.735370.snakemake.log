@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /Users/katekistler/.nextstrain/runtimes/conda/env/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job       count
+------  -------
+export        1
+total         1
+
+Select jobs to execute...
+
+[Fri Oct  6 14:55:14 2023]
+Job 0: Exporting data files for for auspice
+Reason: Updated input files: config/auspice_config.json
+
+
+        export AUGUR_RECURSION_LIMIT=10000;
+        augur export v2             --tree results/tree.nwk             --metadata ../ingest/results/subset_metadata.tsv             --node-data results/branch_lengths.json results/nt_muts.json results/aa_muts.json              --include-root-sequence             --auspice-config config/auspice_config.json             --include-root-sequence             --output auspice/229e.json
+        
+[Fri Oct  6 14:55:16 2023]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2023-10-06T145513.735370.snakemake.log
