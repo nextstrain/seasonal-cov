@@ -1,4 +1,0 @@
-NameError in file /Users/katekistler/nextstrain/cov_229e/phylogenetic/rules/prepare_sequences.smk, line 21:
-name 'configs' is not defined
-  File "/Users/katekistler/nextstrain/cov_229e/phylogenetic/Snakefile", line 5, in <module>
-  File "/Users/katekistler/nextstrain/cov_229e/phylogenetic/rules/prepare_sequences.smk", line 21, in <module>

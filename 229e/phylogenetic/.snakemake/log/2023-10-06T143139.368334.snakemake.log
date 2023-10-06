@@ -1,4 +1,0 @@
-KeyError in file /Users/katekistler/nextstrain/cov_229e/phylogenetic/rules/construct_phylogeny.smk, line 37:
-'construct_phylogeny'
-  File "/Users/katekistler/nextstrain/cov_229e/phylogenetic/Snakefile", line 13, in <module>
-  File "/Users/katekistler/nextstrain/cov_229e/phylogenetic/rules/construct_phylogeny.smk", line 37, in <module>
