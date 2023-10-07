@@ -1,6 +1,6 @@
 # Phylogenetic
 
-!! This part made by Katie!!
+!! This part made by Katie, so things are probably wrong/inefficient!!
 
 This workflow uses metadata and sequences to produce one or multiple [Nextstrain datasets][]
 that can be visualized in Auspice.
