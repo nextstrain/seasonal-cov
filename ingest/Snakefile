@@ -1,6 +1,31 @@
+rule all:
+    input:
+        "results/229e/sequences.fasta",
+        "results/229e/metadata.tsv",
+
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
-configfile: "config/defaults.yaml"
+configfile: "config/229e/defaults.yaml"
 
 
 include: "rules/fetch_from_ncbi.smk"
 include: "rules/curate.smk"
+
+
+# If included, the nextclade rules will create the final metadata TSV by
+# joining the Nextclade output with the metadata.
+# However, if not including nextclade, we have to rename the subset metadata TSV
+# to the final metadata TSV.
+if "nextclade" in config:
+    include: "rules/nextclade.smk"
+
+else:
+
+    rule create_final_metadata:
+        input:
+            metadata="results/229e/subset_metadata.tsv"
+        output:
+            metadata="results/229e/metadata.tsv"
+        shell:
+            """
+            mv {input.metadata} {output.metadata}
+            """

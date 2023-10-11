@@ -9,11 +9,11 @@ node data JSON.
 rule export:
     message: "Exporting data files for for auspice"
     input:
-        tree = "results/tree.nwk",
+        tree = "results/229e/tree.nwk",
         metadata = config["metadata"],
-        branch_lengths = "results/branch_lengths.json",
-        nt_muts = "results/nt_muts.json",
-        aa_muts = "results/aa_muts.json",
+        branch_lengths = "results/229e/branch_lengths.json",
+        nt_muts = "results/229e/nt_muts.json",
+        aa_muts = "results/229e/aa_muts.json",
         auspice_config = config["export"]["auspice_config"]
     output:
         auspice_json = "auspice/229e.json"

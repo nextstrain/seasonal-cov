@@ -22,7 +22,7 @@ rule filter:
         metadata = config["metadata"],
         exclude = config["prepare_sequences"]["dropped_strains"]
     output:
-        sequences = "results/filtered.fasta"
+        sequences = "results/229e/filtered.fasta"
     params:
         group_by = config["prepare_sequences"]["group_by"],
         sequences_per_group = config["prepare_sequences"]["sequences_per_group"],
@@ -33,7 +33,7 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --exclude {input.exclude} \
-            --exclude-where 'host!=Homo sapiens' \
+            --exclude-where "host!=Homo sapiens" \
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
@@ -50,7 +50,7 @@ rule align:
         sequences = rules.filter.output.sequences,
         reference = config["reference"]
     output:
-        alignment = "results/aligned.fasta"
+        alignment = "results/229e/aligned.fasta"
     shell:
         """
         augur align \

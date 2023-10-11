@@ -62,11 +62,11 @@ rule fetch_ncbi_dataset_package:
     params:
         ncbi_taxon_id=config["ncbi_taxon_id"],
     output:
-        dataset_package=temp("data/ncbi_dataset.zip"),
+        dataset_package=temp("data/229e/ncbi_dataset.zip"),
     # Allow retries in case of network errors
     retries: 5
     benchmark:
-        "benchmarks/fetch_ncbi_dataset_package.txt"
+        "benchmarks/229e/fetch_ncbi_dataset_package.txt"
     shell:
         """
         datasets download virus genome taxon {params.ncbi_taxon_id:q} \
@@ -77,11 +77,11 @@ rule fetch_ncbi_dataset_package:
 
 rule extract_ncbi_dataset_sequences:
     input:
-        dataset_package="data/ncbi_dataset.zip",
+        dataset_package="data/229e/ncbi_dataset.zip",
     output:
-        ncbi_dataset_sequences=temp("data/ncbi_dataset_sequences.fasta"),
+        ncbi_dataset_sequences=temp("data/229e/ncbi_dataset_sequences.fasta"),
     benchmark:
-        "benchmarks/extract_ncbi_dataset_sequences.txt"
+        "benchmarks/229e/extract_ncbi_dataset_sequences.txt"
     shell:
         """
         unzip -jp {input.dataset_package} \
@@ -124,15 +124,15 @@ def _get_ncbi_dataset_field_mnemonics(provided_fields: list) -> str:
 
 rule format_ncbi_dataset_report:
     input:
-        dataset_package="data/ncbi_dataset.zip",
+        dataset_package="data/229e/ncbi_dataset.zip",
     output:
-        ncbi_dataset_tsv=temp("data/ncbi_dataset_report.tsv"),
+        ncbi_dataset_tsv=temp("data/229e/ncbi_dataset_report.tsv"),
     params:
         fields_to_include=_get_ncbi_dataset_field_mnemonics(
             config["ncbi_dataset_fields"]
         ),
     benchmark:
-        "benchmarks/format_ncbi_dataset_report.txt"
+        "benchmarks/229e/format_ncbi_dataset_report.txt"
     shell:
         """
         dataformat tsv virus-genome \
@@ -148,14 +148,14 @@ rule format_ncbi_dataset_report:
 # data that we host on data.nextstrain.org
 rule format_ncbi_datasets_ndjson:
     input:
-        ncbi_dataset_sequences="data/ncbi_dataset_sequences.fasta",
-        ncbi_dataset_tsv="data/ncbi_dataset_report.tsv",
+        ncbi_dataset_sequences="data/229e/ncbi_dataset_sequences.fasta",
+        ncbi_dataset_tsv="data/229e/ncbi_dataset_report.tsv",
     output:
-        ndjson="data/ncbi.ndjson",
+        ndjson="data/229e/ncbi.ndjson",
     log:
-        "logs/format_ncbi_datasets_ndjson.txt",
+        "logs/229e/format_ncbi_datasets_ndjson.txt",
     benchmark:
-        "benchmarks/format_ncbi_datasets_ndjson.txt"
+        "benchmarks/229e/format_ncbi_datasets_ndjson.txt"
     shell:
         """
         augur curate passthru \

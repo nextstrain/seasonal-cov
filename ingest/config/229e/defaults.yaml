@@ -50,7 +50,7 @@ curate:
   abbr_authors_field: "abbr_authors"
   # Path to the manual annotations file
   # The path should be relative to the ingest directory
-  annotations: "config/annotations.tsv"
+  annotations: "config/229e/annotations.tsv"
   # The ID field in the metadata to use to merge the manual annotations
   annotations_id: "strain"
   # The ID field in the metadata to use as the sequence id in the output FASTA file

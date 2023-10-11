@@ -11,10 +11,10 @@ This will produce one or more node data JSONs.
 rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
-        tree = "results/tree.nwk",
-        alignment = "results/aligned.fasta"
+        tree = "results/229e/tree.nwk",
+        alignment = "results/229e/aligned.fasta"
     output:
-        node_data = "results/nt_muts.json"
+        node_data = "results/229e/nt_muts.json"
     params:
         inference = config["annotate_phylogeny"]["inference"]
     shell:
@@ -29,11 +29,11 @@ rule ancestral:
 rule translate:
     message: "Translating amino acid sequences"
     input:
-        tree = "results/tree.nwk",
+        tree = "results/229e/tree.nwk",
         node_data = rules.ancestral.output.node_data,
         reference = config["reference"]
     output:
-        node_data = "results/aa_muts.json"
+        node_data = "results/229e/aa_muts.json"
     shell:
         """
         augur translate \
@@ -47,10 +47,10 @@ rule translate:
 rule traits:
     message: "Inferring ancestral traits for host, so coloring will include nodes"
     input:
-        tree = "results/tree.nwk",
+        tree = "results/229e/tree.nwk",
         metadata = config["metadata"]
     output:
-        node_data = "results/traits.json",
+        node_data = "results/229e/traits.json",
     params:
         columns = config["annotate_phylogeny"]["columns"]
     shell:

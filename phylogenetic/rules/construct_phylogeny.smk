@@ -11,9 +11,9 @@ This will produce a Newick tree and a branch lengths JSON file.
 rule tree:
     message: "Building tree"
     input:
-        alignment = "results/aligned.fasta"
+        alignment = "results/229e/aligned.fasta"
     output:
-        tree = "results/tree_raw.nwk"
+        tree = "results/229e/tree_raw.nwk"
     shell:
         """
         augur tree \
@@ -28,11 +28,11 @@ rule refine:
         """
     input:
         tree = rules.tree.output.tree,
-        alignment = "results/aligned.fasta",
+        alignment = "results/229e/aligned.fasta",
         metadata = config["metadata"]
     output:
-        tree = "results/tree.nwk",
-        node_data = "results/branch_lengths.json"
+        tree = "results/229e/tree.nwk",
+        node_data = "results/229e/branch_lengths.json"
     params:
         coalescent = config["construct_phylogeny"]["coalescent"],
         date_inference = config["construct_phylogeny"]["date_inference"],

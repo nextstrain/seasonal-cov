@@ -6,18 +6,18 @@
 
 # The path to the local reference sequence file
 # All paths should be relative to the phylogenetic directory.
-reference: "config/reference.gb"
+reference: "config/229e/reference.gb"
 
 # The path to the metadata.tsv 
-metadata: "../ingest/results/subset_metadata.tsv"
+metadata: "../ingest/results/229e/metadata.tsv"
 
 
 # Config parameters related to the pipeline for preparing sequences
 prepare_sequences:
   # The path to the sequence FASTA file
-  sequences: "../ingest/results/sequences.fasta"
+  sequences: "../ingest/results/229e/sequences.fasta"
   # The path to the file listing strains (by accession number) to drop.
-  dropped_strains: "config/dropped_strains.txt"
+  dropped_strains: "config/229e/dropped_strains.txt"
   # Parameters for augur filter subsampling
   group_by: "country"
   sequences_per_group: 5000
@@ -40,4 +40,4 @@ annotate_phylogeny:
 # Config parameters related to the pipeline for exporting the auspice JSON
 export:
   # The path to the auspice config file
-  auspice_config: "config/auspice_config.json"
+  auspice_config: "config/229e/auspice_config.json"
