@@ -13,7 +13,7 @@ from NCBI and outputs the clean data as two separate files:
 # rules that can then be overridden by local geolocation rules per pathogen repo.
 rule fetch_general_geolocation_rules:
     output:
-        general_geolocation_rules="data/229e/general-geolocation-rules.tsv",
+        general_geolocation_rules="data/{virus}/general-geolocation-rules.tsv",
     params:
         geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
@@ -24,10 +24,10 @@ rule fetch_general_geolocation_rules:
 
 rule concat_geolocation_rules:
     input:
-        general_geolocation_rules="data/229e/general-geolocation-rules.tsv",
+        general_geolocation_rules="data/{virus}/general-geolocation-rules.tsv",
         local_geolocation_rules=config["curate"]["local_geolocation_rules"],
     output:
-        all_geolocation_rules="data/229e/all-geolocation-rules.tsv",
+        all_geolocation_rules="data/{virus}/all-geolocation-rules.tsv",
     shell:
         """
         cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
@@ -43,17 +43,17 @@ rule concat_geolocation_rules:
 # separate files: a metadata TSV and a sequences FASTA.
 rule curate:
     input:
-        sequences_ndjson="data/229e/ncbi.ndjson",
+        sequences_ndjson="data/{virus}/ncbi.ndjson",
         # Change the geolocation_rules input path if you are removing the above two rules
-        all_geolocation_rules="data/229e/all-geolocation-rules.tsv",
-        annotations=config["curate"]["annotations"],
+        all_geolocation_rules="data/{virus}/all-geolocation-rules.tsv",
+        annotations= lambda wildcards:config[wildcards.virus]["annotations"],
     output:
-        metadata="results/229e/all_metadata.tsv",
-        sequences="results/229e/sequences.fasta",
+        metadata="results/{virus}/all_metadata.tsv",
+        sequences="results/{virus}/sequences.fasta",
     log:
-        "logs/229e/curate.txt",
+        "logs/{virus}/curate.txt",
     benchmark:
-        "benchmarks/229e/curate.txt"
+        "benchmarks/{virus}/curate.txt"
     params:
         field_map=config["curate"]["field_map"],
         date_fields=config["curate"]["date_fields"],
@@ -100,9 +100,9 @@ rule curate:
 
 rule subset_metadata:
     input:
-        metadata="results/229e/all_metadata.tsv",
+        metadata="results/{virus}/all_metadata.tsv",
     output:
-        subset_metadata="results/229e/subset_metadata.tsv",
+        subset_metadata="results/{virus}/subset_metadata.tsv",
     params:
         metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:

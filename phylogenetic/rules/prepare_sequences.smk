@@ -18,15 +18,15 @@ rule filter:
           - minimum genome length of {params.min_length}
         """
     input:
-        sequences = config["prepare_sequences"]["sequences"],
-        metadata = config["metadata"],
-        exclude = config["prepare_sequences"]["dropped_strains"]
+        sequences = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["sequences"],
+        metadata = lambda wildcards:config[wildcards.virus]["metadata"],
+        exclude = "config/{virus}/dropped_strains.txt"
     output:
-        sequences = "results/229e/filtered.fasta"
+        sequences = "results/{virus}/filtered.fasta"
     params:
-        group_by = config["prepare_sequences"]["group_by"],
-        sequences_per_group = config["prepare_sequences"]["sequences_per_group"],
-        min_length = config["prepare_sequences"]["min_length"]
+        group_by = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["group_by"],
+        sequences_per_group = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
+        min_length = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["min_length"]
     shell:
         """
         augur filter \
@@ -48,9 +48,9 @@ rule align:
         """
     input:
         sequences = rules.filter.output.sequences,
-        reference = config["reference"]
+        reference = lambda wildcards:config[wildcards.virus]["reference"]
     output:
-        alignment = "results/229e/aligned.fasta"
+        alignment = "results/{virus}/aligned.fasta"
     shell:
         """
         augur align \

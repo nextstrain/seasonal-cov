@@ -1,10 +1,12 @@
+VIRUSES = ['229e', 'nl63']
+
 rule all:
     input:
-        "results/229e/sequences.fasta",
-        "results/229e/metadata.tsv",
+        expand("results/{virus}/sequences.fasta", virus=VIRUSES),
+        expand("results/{virus}/metadata.tsv", virus=VIRUSES)
 
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
-configfile: "config/229e/defaults.yaml"
+configfile: "config/defaults.yaml"
 
 
 include: "rules/fetch_from_ncbi.smk"
@@ -22,9 +24,9 @@ else:
 
     rule create_final_metadata:
         input:
-            metadata="results/229e/subset_metadata.tsv"
+            metadata="results/{virus}/subset_metadata.tsv"
         output:
-            metadata="results/229e/metadata.tsv"
+            metadata="results/{virus}/metadata.tsv"
         shell:
             """
             mv {input.metadata} {output.metadata}

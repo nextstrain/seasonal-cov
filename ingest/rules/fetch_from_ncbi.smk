@@ -60,13 +60,13 @@ to the other approaches.
 
 rule fetch_ncbi_dataset_package:
     params:
-        ncbi_taxon_id=config["ncbi_taxon_id"],
+        ncbi_taxon_id = lambda wildcards:config[wildcards.virus]["ncbi_taxon_id"],
     output:
-        dataset_package=temp("data/229e/ncbi_dataset.zip"),
+        dataset_package=temp("data/{virus}/ncbi_dataset.zip"),
     # Allow retries in case of network errors
     retries: 5
     benchmark:
-        "benchmarks/229e/fetch_ncbi_dataset_package.txt"
+        "benchmarks/{virus}/fetch_ncbi_dataset_package.txt"
     shell:
         """
         datasets download virus genome taxon {params.ncbi_taxon_id:q} \
@@ -77,11 +77,11 @@ rule fetch_ncbi_dataset_package:
 
 rule extract_ncbi_dataset_sequences:
     input:
-        dataset_package="data/229e/ncbi_dataset.zip",
+        dataset_package="data/{virus}/ncbi_dataset.zip",
     output:
-        ncbi_dataset_sequences=temp("data/229e/ncbi_dataset_sequences.fasta"),
+        ncbi_dataset_sequences=temp("data/{virus}/ncbi_dataset_sequences.fasta"),
     benchmark:
-        "benchmarks/229e/extract_ncbi_dataset_sequences.txt"
+        "benchmarks/{virus}/extract_ncbi_dataset_sequences.txt"
     shell:
         """
         unzip -jp {input.dataset_package} \
@@ -124,15 +124,15 @@ def _get_ncbi_dataset_field_mnemonics(provided_fields: list) -> str:
 
 rule format_ncbi_dataset_report:
     input:
-        dataset_package="data/229e/ncbi_dataset.zip",
+        dataset_package="data/{virus}/ncbi_dataset.zip",
     output:
-        ncbi_dataset_tsv=temp("data/229e/ncbi_dataset_report.tsv"),
+        ncbi_dataset_tsv=temp("data/{virus}/ncbi_dataset_report.tsv"),
     params:
         fields_to_include=_get_ncbi_dataset_field_mnemonics(
             config["ncbi_dataset_fields"]
         ),
     benchmark:
-        "benchmarks/229e/format_ncbi_dataset_report.txt"
+        "benchmarks/{virus}/format_ncbi_dataset_report.txt"
     shell:
         """
         dataformat tsv virus-genome \
@@ -148,14 +148,14 @@ rule format_ncbi_dataset_report:
 # data that we host on data.nextstrain.org
 rule format_ncbi_datasets_ndjson:
     input:
-        ncbi_dataset_sequences="data/229e/ncbi_dataset_sequences.fasta",
-        ncbi_dataset_tsv="data/229e/ncbi_dataset_report.tsv",
+        ncbi_dataset_sequences="data/{virus}/ncbi_dataset_sequences.fasta",
+        ncbi_dataset_tsv="data/{virus}/ncbi_dataset_report.tsv",
     output:
-        ndjson="data/229e/ncbi.ndjson",
+        ndjson="data/{virus}/ncbi.ndjson",
     log:
-        "logs/229e/format_ncbi_datasets_ndjson.txt",
+        "logs/{virus}/format_ncbi_datasets_ndjson.txt",
     benchmark:
-        "benchmarks/229e/format_ncbi_datasets_ndjson.txt"
+        "benchmarks/{virus}/format_ncbi_datasets_ndjson.txt"
     shell:
         """
         augur curate passthru \

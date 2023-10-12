@@ -11,9 +11,9 @@ This will produce a Newick tree and a branch lengths JSON file.
 rule tree:
     message: "Building tree"
     input:
-        alignment = "results/229e/aligned.fasta"
+        alignment = "results/{virus}/aligned.fasta"
     output:
-        tree = "results/229e/tree_raw.nwk"
+        tree = "results/{virus}/tree_raw.nwk"
     shell:
         """
         augur tree \
@@ -28,15 +28,17 @@ rule refine:
         """
     input:
         tree = rules.tree.output.tree,
-        alignment = "results/229e/aligned.fasta",
-        metadata = config["metadata"]
+        alignment = "results/{virus}/aligned.fasta",
+        metadata = lambda wildcards:config[wildcards.virus]["metadata"]
     output:
-        tree = "results/229e/tree.nwk",
-        node_data = "results/229e/branch_lengths.json"
+        tree = "results/{virus}/tree.nwk",
+        node_data = "results/{virus}/branch_lengths.json"
     params:
-        coalescent = config["construct_phylogeny"]["coalescent"],
-        date_inference = config["construct_phylogeny"]["date_inference"],
-        clock_filter_iqd= config["construct_phylogeny"]["clock_filter_iqd"]
+        clock_rate = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_rate"],
+        clock_std_dev = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_std_dev"],
+        coalescent = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["coalescent"],
+        date_inference = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["date_inference"],
+        clock_filter_iqd= lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"]
     shell:
         """
         augur refine \
@@ -46,6 +48,8 @@ rule refine:
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
             --timetree \
+            --clock-rate {params.clock_rate} \
+            --clock-std-dev {params.clock_std_dev} \
             --coalescent {params.coalescent} \
             --date-confidence \
             --date-inference {params.date_inference} \

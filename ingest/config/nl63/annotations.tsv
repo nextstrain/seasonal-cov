@@ -1,7 +1,55 @@
-# Manually curated annotations TSV file
-# The TSV should not have a header and should have exactly three columns:
-# id to match existing metadata, field name, and field value
-# If there are multiple annotations for the same id and field, then the last value is used
-# Lines starting with '#' are treated as comments
-# Any '#' after the field value are treated as comments.
-
+# Manually curated annotations TSV file		
+# The TSV should not have a header and should have exactly three columns:		
+"# id to match existing metadata, field name, and field value"		
+"# If there are multiple annotations for the same id and field, then the last value is used"		
+# Lines starting with '#' are treated as comments		
+# Any '#' after the field value are treated as comments.		
+KF530114.1	country	USA
+KF530113.1	country	USA
+KF530112.1	country	USA
+KF530111.1	country	USA
+KF530110.1	country	USA
+KF530109.1	country	USA
+KF530108.1	country	USA
+KF530107.1	country	USA
+KF530106.1	country	USA
+KF530105.1	country	USA
+KF530104.1	country	USA
+JQ900260.1	country	USA
+JQ900259.1	country	USA
+JQ900258.1	country	USA
+JQ900257.1	country	USA
+JQ900256.1	country	USA
+JQ900255.1	country	USA
+JQ771060.1	country	USA
+JQ771059.1	country	USA
+JQ771058.1	country	USA
+JQ771057.1	country	USA
+JQ771056.1	country	USA
+JQ771055.1	country	USA
+JQ765575.1	country	USA
+JQ765574.1	country	USA
+JQ765573.1	country	USA
+JQ765572.1	country	USA
+JQ765571.1	country	USA
+JQ765570.1	country	USA
+JQ765569.1	country	USA
+JQ765568.1	country	USA
+JQ765567.1	country	USA
+JQ765566.1	country	USA
+JQ765565.1	country	USA
+JQ765564.1	country	USA
+JQ765563.1	country	USA
+LC756668.1	country	Japan
+LC720428.1	country	Japan
+LC687402.1	country	Japan
+LC687401.1	country	Japan
+LC687397.1	country	Japan
+LC687396.1	country	Japan
+LC687395.1	country	Japan
+LC687394.1	country	Japan
+LC654455.1	country	Japan
+LC488390.2	country	Japan
+LC488389.2	country	Japan
+JX104161.1	country	China
+OR266947.1	country	Russia

@@ -9,14 +9,14 @@ node data JSON.
 rule export:
     message: "Exporting data files for for auspice"
     input:
-        tree = "results/229e/tree.nwk",
-        metadata = config["metadata"],
-        branch_lengths = "results/229e/branch_lengths.json",
-        nt_muts = "results/229e/nt_muts.json",
-        aa_muts = "results/229e/aa_muts.json",
-        auspice_config = config["export"]["auspice_config"]
+        tree = "results/{virus}/tree.nwk",
+        metadata = lambda wildcards:config[wildcards.virus]["metadata"],
+        branch_lengths = "results/{virus}/branch_lengths.json",
+        nt_muts = "results/{virus}/nt_muts.json",
+        aa_muts = "results/{virus}/aa_muts.json",
+        auspice_config = "config/{virus}/auspice_config.json"
     output:
-        auspice_json = "auspice/229e.json"
+        auspice_json = "auspice/{virus}.json"
     shell:
         """
         export AUGUR_RECURSION_LIMIT=10000;
