@@ -1,0 +1,11 @@
+##sequence-region NC_005831.2 1 27553
+NC_005831.2	feature	source	1	27553	.	+	.	gene=nuc
+NC_005831.2	feature	gene	287	12439	.	+	.	gene_name=ORF1a
+NC_005831.2	feature	gene	12439	20475	.	+	.	gene_name=ORF1b
+NC_005831.2	feature	gene	20472	24542	.	+	.	gene_name=Spike
+NC_005831.2	feature	gene	20517	22718	.	+	.	gene_name=S1
+NC_005831.2	feature	gene	22719	24542	.	+	.	gene_name=S2
+NC_005831.2	feature	gene	24542	25219	.	+	.	gene_name=ORF3
+NC_005831.2	feature	gene	25200	25433	.	+	.	gene_name=E
+NC_005831.2	feature	gene	25442	26122	.	+	.	gene_name=M
+NC_005831.2	feature	gene	26133	27266	.	+	.	gene_name=N

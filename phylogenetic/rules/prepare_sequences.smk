@@ -39,7 +39,6 @@ rule filter:
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length}
         """
-
 rule align:
     message:
         """
@@ -48,15 +47,18 @@ rule align:
         """
     input:
         sequences = rules.filter.output.sequences,
-        reference = lambda wildcards:config[wildcards.virus]["reference"]
+        reference= lambda wildcards:config[wildcards.virus]["reference"],
+        genemap= lambda wildcards:config[wildcards.virus]["genemap"],
     output:
-        alignment = "results/{virus}/aligned.fasta"
+        alignment= "results/{virus}/aligned.fasta",
+        insertions= "results/{virus}/insertions.fasta"
     shell:
         """
-        augur align \
-            --sequences {input.sequences} \
-            --reference-sequence {input.reference} \
-            --output {output.alignment} \
-            --remove-reference \
-            --fill-gaps
+        nextalign run \
+            --reference {input.reference} \
+            --genemap {input.genemap} \
+            --retry-reverse-complement \
+            --output-fasta - \
+            --output-insertions {output.insertions} \
+            {input.sequences} | seqkit seq -i > {output.alignment}
         """

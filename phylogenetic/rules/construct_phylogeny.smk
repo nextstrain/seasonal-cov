@@ -41,6 +41,17 @@ rule refine:
         clock_filter_iqd= lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"]
     shell:
         """
+        if [ "{wildcards.virus}" == "229e" ] ; then
+            echo "Estimating clock rate (run {wildcards.virus})"
+            clock_rate=""
+            clock_std_dev=""
+        else
+            echo "Setting clock rate at {params.clock_rate} with std dev {params.clock_std_dev}"
+            echo "(run {wildcards.virus})"
+            clock_rate="--clock-rate {params.clock_rate}"
+            clock_std_dev="--clock-std-dev {params.clock_std_dev}"
+        fi
+
         augur refine \
             --tree {input.tree} \
             --alignment {input.alignment} \
@@ -48,8 +59,8 @@ rule refine:
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
             --timetree \
-            --clock-rate {params.clock_rate} \
-            --clock-std-dev {params.clock_std_dev} \
+            $clock_rate \
+            $clock_std_dev \
             --coalescent {params.coalescent} \
             --date-confidence \
             --date-inference {params.date_inference} \

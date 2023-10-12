@@ -1,0 +1,12 @@
+##sequence-region NC_002645.1 1 27317
+NC_002645.1	feature	source	1	27317	.	+	.	gene=nuc
+NC_002645.1	feature	gene	293	12520	.	+	.	gene_name=ORF1a
+NC_002645.1	feature	gene	12520	20568	.	+	.	gene_name=ORF1b
+NC_002645.1	feature	gene	20570	24091	.	+	.	gene_name=Spike
+NC_002645.1	feature	gene	20615	22249	.	+	.	gene_name=S1
+NC_002645.1	feature	gene	22250	24091	.	+	.	gene_name=S2
+NC_002645.1	feature	gene	24091	24492	.	+	.	gene_name=4a
+NC_002645.1	feature	gene	24482	24748	.	+	.	gene_name=4b
+NC_002645.1	feature	gene	24750	24983	.	+	.	gene_name=E
+NC_002645.1	feature	gene	24995	25672	.	+	.	gene_name=M
+NC_002645.1	feature	gene	25686	26855	.	+	.	gene_name=N

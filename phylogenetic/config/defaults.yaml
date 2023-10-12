@@ -8,7 +8,8 @@
 229e:
     # The path to the local reference sequence file
     # All paths should be relative to the phylogenetic directory.
-    reference: "config/229e/reference.gb"
+    reference: "config/229e/reference.fasta"
+    genemap: "config/229e/genemap.gff"
 
     # The path to the metadata.tsv 
     metadata: "../ingest/results/229e/metadata.tsv"
@@ -41,7 +42,8 @@
 nl63:
     # The path to the local reference sequence file
     # All paths should be relative to the phylogenetic directory.
-    reference: "config/nl63/reference.gb"
+    reference: "config/nl63/reference.fasta"
+    genemap: "config/nl63/genemap.gff"
 
     # The path to the metadata.tsv 
     metadata: "../ingest/results/nl63/metadata.tsv"

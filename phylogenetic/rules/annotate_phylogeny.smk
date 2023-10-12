@@ -31,7 +31,7 @@ rule translate:
     input:
         tree = "results/{virus}/tree.nwk",
         node_data = rules.ancestral.output.node_data,
-        reference = lambda wildcards:config[wildcards.virus]["reference"]
+        genemap = lambda wildcards:config[wildcards.virus]["genemap"]
     output:
         node_data = "results/{virus}/aa_muts.json"
     shell:
@@ -39,7 +39,7 @@ rule translate:
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.reference} \
+            --reference-sequence {input.genemap} \
             --output {output.node_data} \
         """
 
