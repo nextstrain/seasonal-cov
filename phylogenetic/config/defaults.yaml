@@ -72,4 +72,71 @@ nl63:
       inference: "joint"
       # Parameters for ancestral traits
       columns: "country"
+      
+oc43:
+    # The path to the local reference sequence file
+    # All paths should be relative to the phylogenetic directory.
+    reference: "config/oc43/reference.fasta"
+    genemap: "config/oc43/genemap.gff"
+
+    # The path to the metadata.tsv 
+    metadata: "../ingest/results/oc43/metadata.tsv"
+
+    # Config parameters related to the pipeline for preparing sequences
+    prepare_sequences:
+      # The path to the sequence FASTA file
+      sequences: "../ingest/results/oc43/sequences.fasta"
+      # Parameters for augur filter subsampling
+      group_by: "country"
+      sequences_per_group: 5000
+      min_length: 20000
   
+    # Config parameters related to the pipeline for tree building
+    construct_phylogeny:
+      # Parameters for the time-resolved tree with augur refine
+      clock_rate: ""
+      clock_std_dev: ""
+      coalescent: "opt"
+      date_inference: "marginal"
+      clock_filter_iqd: 4
+  
+    # Config parameters related to the pipeline for annotating the tree
+    annotate_phylogeny:
+      # Parameters for ancestral sequence reconstruction
+      inference: "joint"
+      # Parameters for ancestral traits
+      columns: "country"
+
+hku1:
+    # The path to the local reference sequence file
+    # All paths should be relative to the phylogenetic directory.
+    reference: "config/hku1/reference.fasta"
+    genemap: "config/hku1/genemap.gff"
+
+    # The path to the metadata.tsv 
+    metadata: "../ingest/results/hku1/metadata.tsv"
+
+    # Config parameters related to the pipeline for preparing sequences
+    prepare_sequences:
+      # The path to the sequence FASTA file
+      sequences: "../ingest/results/hku1/sequences.fasta"
+      # Parameters for augur filter subsampling
+      group_by: "country"
+      sequences_per_group: 5000
+      min_length: 20000
+  
+    # Config parameters related to the pipeline for tree building
+    construct_phylogeny:
+      # Parameters for the time-resolved tree with augur refine
+      clock_rate: 0.000120
+      clock_std_dev: 0.00005
+      coalescent: "opt"
+      date_inference: "marginal"
+      clock_filter_iqd: 4
+  
+    # Config parameters related to the pipeline for annotating the tree
+    annotate_phylogeny:
+      # Parameters for ancestral sequence reconstruction
+      inference: "joint"
+      # Parameters for ancestral traits
+      columns: "country"

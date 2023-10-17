@@ -1,0 +1,13 @@
+##sequence-region NC_006577.2 1 29926
+NC_006577.2	feature	source	1	29926	.	+	.	gene=nuc
+NC_006577.2	feature	gene	206	13600	.	+	.	gene=ORF1a
+NC_006577.2	feature	gene	13600	21753	.	+	.	gene=ORF1b
+NC_006577.2	feature	gene	21773	22933	.	+	.	gene=HE
+NC_006577.2	feature	gene	22942	27012	.	+	.	gene=Spike
+NC_006577.2	feature	gene	22978	25221	.	+	.	gene=S1
+NC_006577.2	feature	gene	27051	27380	.	+	.	gene=S2
+NC_006577.2	feature	gene	27051	27380	.	+	.	gene=ORF4
+NC_006577.2	feature	gene	27373	27621	.	+	.	gene=E
+NC_006577.2	feature	gene	27633	28304	.	+	.	gene=M
+NC_006577.2	feature	gene	28320	29645	.	+	.	gene=N
+NC_006577.2	feature	gene	28342	28959	.	+	.	gene=N2

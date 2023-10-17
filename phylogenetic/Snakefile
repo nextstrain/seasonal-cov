@@ -1,4 +1,4 @@
-VIRUSES = ['229e', 'nl63']
+VIRUSES = ['229e', 'nl63', 'oc43', 'hku1']
 
 rule all:
     input:

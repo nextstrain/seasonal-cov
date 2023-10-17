@@ -41,13 +41,12 @@ rule refine:
         clock_filter_iqd= lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"]
     shell:
         """
-        if [ "{wildcards.virus}" == "229e" ] ; then
-            echo "Estimating clock rate (run {wildcards.virus})"
+        if [ "{wildcards.virus}" == "229e" ] || [ "{wildcards.virus}" == "oc43" ]; then
+            echo "Estimating clock rate for {wildcards.virus}"
             clock_rate=""
             clock_std_dev=""
         else
-            echo "Setting clock rate at {params.clock_rate} with std dev {params.clock_std_dev}"
-            echo "(run {wildcards.virus})"
+            echo "Setting clock rate at {params.clock_rate} with std dev {params.clock_std_dev} for {wildcards.virus}"
             clock_rate="--clock-rate {params.clock_rate}"
             clock_std_dev="--clock-std-dev {params.clock_std_dev}"
         fi

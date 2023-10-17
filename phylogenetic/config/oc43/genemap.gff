@@ -1,0 +1,14 @@
+##sequence-region AY391777.1 1 30738
+AY391777.1	feature	source	1	30738	.	+	.	gene=nuc
+AY391777.1	feature	gene	211	13332	.	+	.	gene_name=ORF1a
+AY391777.1	feature	gene	13332	21497	.	+	.	gene_name=ORF1b
+AY391777.1	feature	gene	21507	22343	.	+	.	gene_name=NS2a
+AY391777.1	feature	gene	22355	23629	.	+	.	gene_name=HE
+AY391777.1	feature	gene	23644	27729	.	+	.	gene_name=Spike
+AY391777.1	feature	gene	23683	25941	.	+	.	gene_name=S1
+AY391777.1	feature	gene	25942	27729	.	+	.	gene_name=S2
+AY391777.1	feature	gene	27817	28146	.	+	.	gene_name=NS2
+AY391777.1	feature	gene	28133	28387	.	+	.	gene_name=E
+AY391777.1	feature	gene	28402	29094	.	+	.	gene_name=M
+AY391777.1	feature	gene	29104	30450	.	+	.	gene_name=N
+AY391777.1	feature	gene	29441	29788	.	+	.	gene_name=N2
