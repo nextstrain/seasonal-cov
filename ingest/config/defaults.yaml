@@ -22,6 +22,21 @@ nl63:
     # Path to the manual annotations file
     # The path should be relative to the ingest directory
     annotations: "config/nl63/annotations.tsv"
+oc43:
+    # NCBI Taxon ID
+    # Required to fetch from NCBI Datasets
+    ncbi_taxon_id: "31631"
+    # Path to the manual annotations file
+    # The path should be relative to the ingest directory
+    annotations: "config/oc43/annotations.tsv"   
+hku1:
+    # NCBI Taxon ID
+    # Required to fetch from NCBI Datasets
+    ncbi_taxon_id: "290028"
+    # Path to the manual annotations file
+    # The path should be relative to the ingest directory
+    annotations: "config/hku1/annotations.tsv"  
+    
 
 # Optional fields to add to the NCBI Datasets output
 ncbi_dataset_fields: []

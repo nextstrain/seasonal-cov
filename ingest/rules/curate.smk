@@ -85,6 +85,7 @@ rule curate:
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
+            | ./scripts/tidy_countries.py \
             | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./vendored/merge-user-metadata \
