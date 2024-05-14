@@ -10,6 +10,7 @@ This part of the workflow expects a metadata TSV and FASTA file as inputs
 and will produce an aligned FASTA file of subsampled sequences as an output.
 """
 
+
 rule filter:
     message:
         """
@@ -18,15 +19,15 @@ rule filter:
           - minimum genome length of {params.min_length}
         """
     input:
-        sequences = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["sequences"],
-        metadata = lambda wildcards:config[wildcards.virus]["metadata"],
-        exclude = "config/{virus}/dropped_strains.txt"
+        sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],
+        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
+        exclude="config/{virus}/dropped_strains.txt",
     output:
-        sequences = "results/{virus}/filtered.fasta"
+        sequences="results/{virus}/filtered.fasta",
     params:
-        group_by = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["group_by"],
-        sequences_per_group = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
-        min_length = lambda wildcards:config[wildcards.virus]["prepare_sequences"]["min_length"]
+        group_by=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["group_by"],
+        sequences_per_group=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
+        min_length=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["min_length"],
     shell:
         """
         augur filter \
@@ -39,6 +40,8 @@ rule filter:
             --sequences-per-group {params.sequences_per_group} \
             --min-length {params.min_length}
         """
+
+
 rule align:
     message:
         """
@@ -46,11 +49,11 @@ rule align:
           - filling gaps with N
         """
     input:
-        sequences = rules.filter.output.sequences,
-        reference= lambda wildcards:config[wildcards.virus]["reference"],
-        genemap= lambda wildcards:config[wildcards.virus]["genemap"],
+        sequences=rules.filter.output.sequences,
+        reference=lambda wildcards: config[wildcards.virus]["reference"],
+        genemap=lambda wildcards: config[wildcards.virus]["genemap"],
     output:
-        alignment= "results/{virus}/aligned.fasta",
+        alignment="results/{virus}/aligned.fasta",
         insertions="results/{virus}/insertions.tsv",
     shell:
         """
