@@ -51,14 +51,13 @@ rule align:
         genemap= lambda wildcards:config[wildcards.virus]["genemap"],
     output:
         alignment= "results/{virus}/aligned.fasta",
-        insertions= "results/{virus}/insertions.fasta"
+        insertions="results/{virus}/insertions.tsv",
     shell:
         """
-        nextalign run \
-            --reference {input.reference} \
-            --genemap {input.genemap} \
-            --retry-reverse-complement \
+        nextclade run \
+            --input-ref {input.reference} \
+            --input-annotation {input.genemap} \
             --output-fasta - \
-            --output-insertions {output.insertions} \
+            --output-tsv {output.insertions} \
             {input.sequences} | seqkit seq -i > {output.alignment}
         """
