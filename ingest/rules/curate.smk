@@ -13,7 +13,7 @@ from NCBI and outputs the clean data as two separate files:
 # rules that can then be overridden by local geolocation rules per pathogen repo.
 rule fetch_general_geolocation_rules:
     output:
-        general_geolocation_rules="data/{virus}/general-geolocation-rules.tsv",
+        general_geolocation_rules="data/general-geolocation-rules.tsv",
     params:
         geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
@@ -24,10 +24,10 @@ rule fetch_general_geolocation_rules:
 
 rule concat_geolocation_rules:
     input:
-        general_geolocation_rules="data/{virus}/general-geolocation-rules.tsv",
+        general_geolocation_rules="data/general-geolocation-rules.tsv",
         local_geolocation_rules=config["curate"]["local_geolocation_rules"],
     output:
-        all_geolocation_rules="data/{virus}/all-geolocation-rules.tsv",
+        all_geolocation_rules="data/all-geolocation-rules.tsv",
     shell:
         """
         cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
@@ -45,7 +45,7 @@ rule curate:
     input:
         sequences_ndjson="data/{virus}/ncbi.ndjson",
         # Change the geolocation_rules input path if you are removing the above two rules
-        all_geolocation_rules="data/{virus}/all-geolocation-rules.tsv",
+        all_geolocation_rules="data/all-geolocation-rules.tsv",
         annotations= lambda wildcards:config[wildcards.virus]["annotations"],
     output:
         metadata="results/{virus}/all_metadata.tsv",
