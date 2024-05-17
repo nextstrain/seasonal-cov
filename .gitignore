@@ -10,6 +10,7 @@ ingest/results
 ingest/results/*
 phylogenetic/auspice
 phylogenetic/auspice/*
+phylogenetic/benchmarks
 phylogenetic/logs
 phylogenetic/logs/*
 phylogenetic/results
