@@ -4,11 +4,9 @@ and outputs them as a single NDJSON file that can be directly fed into the
 curation pipeline.
 """
 
-# Fetch from NCBI
-
 rule fetch_ncbi_dataset_package:
     params:
-        ncbi_taxon_id = lambda wildcards:config[wildcards.virus]["ncbi_taxon_id"],
+        ncbi_taxon_id=lambda wildcards: config[wildcards.virus]["ncbi_taxon_id"],
     output:
         dataset_package=temp("data/{virus}/ncbi_dataset.zip"),
     # Allow retries in case of network errors
@@ -76,9 +74,7 @@ rule format_ncbi_dataset_report:
     output:
         ncbi_dataset_tsv=temp("data/{virus}/ncbi_dataset_report.tsv"),
     params:
-        fields_to_include=_get_ncbi_dataset_field_mnemonics(
-            config["ncbi_dataset_fields"]
-        ),
+        fields_to_include=_get_ncbi_dataset_field_mnemonics(config["ncbi_dataset_fields"]),
     benchmark:
         "benchmarks/{virus}/format_ncbi_dataset_report.txt"
     shell:

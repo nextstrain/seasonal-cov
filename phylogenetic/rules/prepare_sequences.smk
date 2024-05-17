@@ -9,6 +9,8 @@ This usually includes the following steps:
 This part of the workflow expects a metadata TSV and FASTA file as inputs
 and will produce an aligned FASTA file of subsampled sequences as an output.
 """
+
+
 rule filter:
     input:
         sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],

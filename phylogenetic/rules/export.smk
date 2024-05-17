@@ -5,16 +5,17 @@ tree and at least one node data JSON.
 
 """
 
+
 rule export:
     input:
-        tree = "results/{virus}/tree.nwk",
-        metadata = lambda wildcards:config[wildcards.virus]["metadata"],
-        branch_lengths = "results/{virus}/branch_lengths.json",
-        nt_muts = "results/{virus}/nt_muts.json",
-        aa_muts = "results/{virus}/aa_muts.json",
-        auspice_config = "config/{virus}/auspice_config.json"
+        tree="results/{virus}/tree.nwk",
+        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
+        branch_lengths="results/{virus}/branch_lengths.json",
+        nt_muts="results/{virus}/nt_muts.json",
+        aa_muts="results/{virus}/aa_muts.json",
+        auspice_config="config/{virus}/auspice_config.json",
     output:
-        auspice_json = "auspice/{virus}.json"
+        auspice_json="auspice/{virus}.json",
     shell:
         """
         export AUGUR_RECURSION_LIMIT=10000;

@@ -7,11 +7,12 @@ for each sequence.
 This will produce a Newick tree and a branch lengths JSON file.
 """
 
+
 rule tree:
     input:
-        alignment = "results/{virus}/aligned.fasta"
+        alignment="results/{virus}/aligned.fasta",
     output:
-        tree = "results/{virus}/tree_raw.nwk"
+        tree="results/{virus}/tree_raw.nwk",
     shell:
         """
         augur tree \
@@ -22,18 +23,18 @@ rule tree:
 
 rule refine:
     input:
-        tree = "results/{virus}/tree_raw.nwk"
-        alignment = "results/{virus}/aligned.fasta",
-        metadata = lambda wildcards:config[wildcards.virus]["metadata"]
+        tree="results/{virus}/tree_raw.nwk",
+        alignment="results/{virus}/aligned.fasta",
+        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
     output:
-        tree = "results/{virus}/tree.nwk",
-        node_data = "results/{virus}/branch_lengths.json"
+        tree="results/{virus}/tree.nwk",
+        node_data="results/{virus}/branch_lengths.json",
     params:
-        clock_rate = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_rate"],
-        clock_std_dev = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_std_dev"],
-        coalescent = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["coalescent"],
-        date_inference = lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["date_inference"],
-        clock_filter_iqd= lambda wildcards:config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"]
+        clock_rate=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_rate"],
+        clock_std_dev=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_std_dev"],
+        coalescent=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["coalescent"],
+        date_inference=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["date_inference"],
+        clock_filter_iqd=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"],
     shell:
         """
         if [ "{wildcards.virus}" == "229e" ] || [ "{wildcards.virus}" == "oc43" ]; then
