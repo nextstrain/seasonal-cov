@@ -1,48 +1,26 @@
-# This configuration file should contain all required configuration parameters
-# for the ingest workflow to run to completion.
-#
-# Define optional config parameters with their default values here so that users
-# do not have to dig through the workflows to figure out the default values
-
-# Required to fetch from Entrez
-entrez_search_term: ""
-
-# Supply information specific to each virus
+# virus-specific information
+# for each virus, give the NCBI taxon ID (required for data fetch from
+# NCBI datasets) and the path to the manual annotations file, relative
+# to the ingest directory
+## TODO see if the `annotations` key can be refactored out into the
+## Snakemake file with a `{virus}` wildcard
 229e:
-    # NCBI Taxon ID
-    # Required to fetch from NCBI Datasets
-    ncbi_taxon_id: "11137"
-    # Path to the manual annotations file
-    # The path should be relative to the ingest directory
-    annotations: "config/229e/annotations.tsv"
+  ncbi_taxon_id: "11137"
+  annotations: "config/229e/annotations.tsv"
 nl63:
-    # NCBI Taxon ID
-    # Required to fetch from NCBI Datasets
-    ncbi_taxon_id: "277944"
-    # Path to the manual annotations file
-    # The path should be relative to the ingest directory
-    annotations: "config/nl63/annotations.tsv"
+  ncbi_taxon_id: "277944"
+  annotations: "config/nl63/annotations.tsv"
 oc43:
-    # NCBI Taxon ID
-    # Required to fetch from NCBI Datasets
-    ncbi_taxon_id: "31631"
-    # Path to the manual annotations file
-    # The path should be relative to the ingest directory
-    annotations: "config/oc43/annotations.tsv"   
+  ncbi_taxon_id: "31631"
+  annotations: "config/oc43/annotations.tsv"
 hku1:
-    # NCBI Taxon ID
-    # Required to fetch from NCBI Datasets
-    ncbi_taxon_id: "290028"
-    # Path to the manual annotations file
-    # The path should be relative to the ingest directory
-    annotations: "config/hku1/annotations.tsv"  
-    
+  ncbi_taxon_id: "290028"
+  annotations: "config/hku1/annotations.tsv"
 
 # Optional fields to add to the NCBI Datasets output
 ncbi_dataset_fields: []
 
-# Config parameters related to the curate pipeline
-# Shared by all viruses
+# Config parameters related to the curate pipeline, shared by all viruses
 curate:
   # URL pointed to public generalized geolocation rules
   # For the Nextstrain team, this is currently
