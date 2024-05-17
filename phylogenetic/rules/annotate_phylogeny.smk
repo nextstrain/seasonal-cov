@@ -24,6 +24,7 @@ rule ancestral:
             --inference {params.inference}
         """
 
+
 rule translate:
     input:
         tree = "results/{virus}/tree.nwk",

@@ -19,6 +19,7 @@ rule tree:
             --output {output.tree}
         """
 
+
 rule refine:
     input:
         tree = "results/{virus}/tree_raw.nwk"
