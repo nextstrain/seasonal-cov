@@ -9,7 +9,6 @@ This will produce one or more node data JSONs.
 """
 
 rule ancestral:
-    message: "Reconstructing ancestral sequences and mutations"
     input:
         tree = "results/{virus}/tree.nwk",
         alignment = "results/{virus}/aligned.fasta"
@@ -27,7 +26,6 @@ rule ancestral:
         """
 
 rule translate:
-    message: "Translating amino acid sequences"
     input:
         tree = "results/{virus}/tree.nwk",
         node_data = rules.ancestral.output.node_data,
@@ -45,7 +43,6 @@ rule translate:
 
 
 rule traits:
-    message: "Inferring ancestral traits for host, so coloring will include nodes"
     input:
         tree = "results/{virus}/tree.nwk",
         metadata = lambda wildcards:config[wildcards.virus]["metadata"]

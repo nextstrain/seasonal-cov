@@ -7,7 +7,6 @@ node data JSON.
 """
 
 rule export:
-    message: "Exporting data files for for auspice"
     input:
         tree = "results/{virus}/tree.nwk",
         metadata = lambda wildcards:config[wildcards.virus]["metadata"],

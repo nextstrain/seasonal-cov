@@ -9,7 +9,6 @@ This will produce a Newick tree and a branch lengths JSON file.
 """
 
 rule tree:
-    message: "Building tree"
     input:
         alignment = "results/{virus}/aligned.fasta"
     output:
@@ -22,10 +21,6 @@ rule tree:
         """
 
 rule refine:
-    message:
-        """
-        Refining tree
-        """
     input:
         tree = rules.tree.output.tree,
         alignment = "results/{virus}/aligned.fasta",

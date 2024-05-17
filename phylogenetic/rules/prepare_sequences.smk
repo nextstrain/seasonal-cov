@@ -12,12 +12,6 @@ and will produce an aligned FASTA file of subsampled sequences as an output.
 
 
 rule filter:
-    message:
-        """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
-          - minimum genome length of {params.min_length}
-        """
     input:
         sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],
         metadata=lambda wildcards: config[wildcards.virus]["metadata"],
@@ -43,11 +37,6 @@ rule filter:
 
 
 rule align:
-    message:
-        """
-        Aligning sequences to {input.reference}
-          - filling gaps with N
-        """
     input:
         sequences=rules.filter.output.sequences,
         reference=lambda wildcards: config[wildcards.virus]["reference"],
