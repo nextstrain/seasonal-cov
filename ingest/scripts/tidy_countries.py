@@ -1,35 +1,29 @@
 #!/usr/bin/env python3
 """
 Finds samples where the "country" is listed as "country: city",
-which is a common formatting issue that is not caught by previous steps of the curate pipeline.
+which is a common formatting issue that is not caught by previous
+steps of the curate pipeline.
 """
-import argparse
+
 import json
-from sys import stderr, stdin, stdout
+from sys import stdin, stdout
 
-
+COUNTRY_FIELD = "country"
 def tidy_countries(record: dict) -> dict:
-    country_field = "country"
-    # if there is a ':' in the country, take only what is before it
-    # default value blank
-    new_country = ''
-    new_country = record[country_field].split(':')[0]
+    """
+    Inspects the value of the country_field key in `record` and if
+    a colon is detected, truncates to only the string preceeding the
+    colon. Returns the record whether or not it is modified.
+    """
+    # default to the empty string
+    new_country = record.get(COUNTRY_FIELD,"").split(':')[0]
 
-    record[country_field] = new_country
+    record[COUNTRY_FIELD] = new_country
 
     return record
 
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser(
-    #     description=__doc__,
-    #     formatter_class=argparse.ArgumentDefaultsHelpFormatter
-    # )
-    # parser.add_argument("--country-field", default="country",
-    #     help="The field the country where sequence was sampled.")
-    #
-    # args = parser.parse_args()
-
     for record in stdin:
         record = json.loads(record)
 
