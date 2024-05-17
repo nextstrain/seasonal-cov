@@ -34,9 +34,10 @@ curate:
   # in the configs below should use the new field names
   field_map:
     Accession: strain
+    Source database: database
     Isolate Lineage: name
     Geographic Region: region
-    Geographic Location: country
+    Geographic Location: location
     Isolate Collection date: date
     Host Name: host
     Submitter Names: authors

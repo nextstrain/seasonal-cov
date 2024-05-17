@@ -105,7 +105,6 @@ rule curate:
                 --authors-field {params.authors_field:q} \
                 --default-value {params.authors_default_value:q} \
                 --abbr-authors-field {params.abbr_authors_field:q} \
-            | ./scripts/tidy_countries.py \
             | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules:q} \
             | ./vendored/merge-user-metadata \
