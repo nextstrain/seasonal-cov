@@ -20,8 +20,9 @@ rule tree:
     shell:
         """
         augur tree \
-            --alignment {input.alignment} \
-            --output {output.tree} 2>{log}
+            --alignment {input.alignment:q} \
+            --output {output.tree:q} \
+          2>{log:q}
         """
 
 
@@ -58,17 +59,17 @@ rule refine:
           fi
 
           augur refine \
-              --tree {input.tree} \
-              --alignment {input.alignment} \
-              --metadata {input.metadata} \
-              --output-tree {output.tree} \
-              --output-node-data {output.node_data} \
+              --tree {input.tree:q} \
+              --alignment {input.alignment:q} \
+              --metadata {input.metadata:q} \
+              --output-tree {output.tree:q} \
+              --output-node-data {output.node_data:q} \
               --timetree \
               $clock_rate \
               $clock_std_dev \
-              --coalescent {params.coalescent} \
+              --coalescent {params.coalescent:q} \
               --date-confidence \
-              --date-inference {params.date_inference} \
-              --clock-filter-iqd {params.clock_filter_iqd}
-        ) 2>{log}
+              --date-inference {params.date_inference:q} \
+              --clock-filter-iqd {params.clock_filter_iqd:q}
+        ) 2>{log:q}
         """

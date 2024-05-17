@@ -25,12 +25,12 @@ rule export:
         (
           export AUGUR_RECURSION_LIMIT=10000;
           augur export v2 \
-              --tree {input.tree} \
-              --metadata {input.metadata} \
-              --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts}  \
+              --tree {input.tree:q} \
+              --metadata {input.metadata:q} \
+              --node-data {input.branch_lengths:q} {input.nt_muts:q} {input.aa_muts:q}  \
               --include-root-sequence \
-              --auspice-config {input.auspice_config} \
+              --auspice-config {input.auspice_config:q} \
               --include-root-sequence \
-              --output {output.auspice_json}
-        ) 2>{log}
+              --output {output.auspice_json:q}
+        ) 2>{log:q}
         """

@@ -29,14 +29,15 @@ rule filter:
     shell:
         """
         augur filter \
-            --sequences {input.sequences} \
-            --metadata {input.metadata} \
-            --exclude {input.exclude} \
+            --sequences {input.sequences:q} \
+            --metadata {input.metadata:q} \
+            --exclude {input.exclude:q} \
             --exclude-where "host!=Homo sapiens" \
-            --output {output.sequences} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
-            --min-length {params.min_length} 2>{log}
+            --output {output.sequences:q} \
+            --group-by {params.group_by:q} \
+            --sequences-per-group {params.sequences_per_group:q} \
+            --min-length {params.min_length:q} \
+          2>{log:q}
         """
 
 
@@ -56,10 +57,11 @@ rule align:
         """
         (
           nextclade run \
-              --input-ref {input.reference} \
-              --input-annotation {input.genemap} \
+              --input-ref {input.reference:q} \
+              --input-annotation {input.genemap:q} \
               --output-fasta - \
-              --output-tsv {output.insertions} \
-              {input.sequences} | seqkit seq -i > {output.alignment}
-        ) 2>{log}
+              --output-tsv {output.insertions:q} \
+              {input.sequences:q} \
+          | seqkit seq -i > {output.alignment:q} \
+        ) 2>{log:q}
         """

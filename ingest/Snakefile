@@ -32,5 +32,5 @@ else:
             metadata="results/{virus}/metadata.tsv",
         shell:
             """
-            mv {input.metadata} {output.metadata}
+            mv {input.metadata:q} {output.metadata:q}
             """

@@ -22,7 +22,9 @@ rule fetch_general_geolocation_rules:
         geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
         """
-        curl {params.geolocation_rules_url} > {output.general_geolocation_rules} 2> {log}
+        curl {params.geolocation_rules_url:q} \
+          > {output.general_geolocation_rules:q} \
+         2> {log:q}
         """
 
 
@@ -38,8 +40,9 @@ rule concat_geolocation_rules:
         "benchmarks/concat_geolocation_rules.txt"
     shell:
         """
-        cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules} \
-          2> {log}
+        cat {input.general_geolocation_rules:q} {input.local_geolocation_rules:q} \
+          > {output.all_geolocation_rules:} \
+         2> {log:q}
         """
 
 
@@ -83,34 +86,37 @@ rule curate:
         id_field=config["curate"]["output_id_field"],
         sequence_field=config["curate"]["output_sequence_field"],
     shell:
+        # note: params.field_map intentionally not quoted
         """
-        (cat {input.sequences_ndjson} \
+        (
+          cat {input.sequences_ndjson:q} \
             | ./vendored/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
             | augur curate format-dates \
-                --date-fields {params.date_fields} \
-                --expected-date-formats {params.expected_date_formats} \
+                --date-fields {params.date_fields:q} \
+                --expected-date-formats {params.expected_date_formats:q} \
             | ./vendored/transform-genbank-location \
             | augur curate titlecase \
-                --titlecase-fields {params.titlecase_fields} \
-                --articles {params.articles} \
-                --abbreviations {params.abbreviations} \
+                --titlecase-fields {params.titlecase_fields:q} \
+                --articles {params.articles:q} \
+                --abbreviations {params.abbreviations:q} \
             | ./vendored/transform-authors \
-                --authors-field {params.authors_field} \
-                --default-value {params.authors_default_value} \
-                --abbr-authors-field {params.abbr_authors_field} \
+                --authors-field {params.authors_field:q} \
+                --default-value {params.authors_default_value:q} \
+                --abbr-authors-field {params.abbr_authors_field:q} \
             | ./scripts/tidy_countries.py \
             | ./vendored/apply-geolocation-rules \
-                --geolocation-rules {input.all_geolocation_rules} \
+                --geolocation-rules {input.all_geolocation_rules:q} \
             | ./vendored/merge-user-metadata \
-                --annotations {input.annotations} \
-                --id-field {params.annotations_id} \
+                --annotations {input.annotations:q} \
+                --id-field {params.annotations_id:q} \
             | augur curate passthru \
-                --output-metadata {output.metadata} \
-                --output-fasta {output.sequences} \
-                --output-id-field {params.id_field} \
-                --output-seq-field {params.sequence_field} ) 2>> {log}
+                --output-metadata {output.metadata:q} \
+                --output-fasta {output.sequences:q} \
+                --output-id-field {params.id_field:q} \
+                --output-seq-field {params.sequence_field}
+        ) 2>> {log:q}
         """
 
 
@@ -127,6 +133,8 @@ rule subset_metadata:
         metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
         """
-        tsv-select -H -f {params.metadata_fields} \
-            {input.metadata} > {output.subset_metadata} 2> {log}
+        tsv-select -H -f {params.metadata_fields:q} \
+            {input.metadata:q} \
+          > {output.subset_metadata:q} \
+         2> {log:q}
         """

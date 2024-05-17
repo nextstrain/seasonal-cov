@@ -23,10 +23,11 @@ rule ancestral:
     shell:
         """
         augur ancestral \
-            --tree {input.tree} \
-            --alignment {input.alignment} \
-            --output-node-data {output.node_data} \
-            --inference {params.inference} 2>{log}
+            --tree {input.tree:q} \
+            --alignment {input.alignment:q} \
+            --output-node-data {output.node_data:q} \
+            --inference {params.inference} \
+          2>{log:q}
         """
 
 
@@ -44,10 +45,11 @@ rule translate:
     shell:
         """
         augur translate \
-            --tree {input.tree} \
-            --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genemap} \
-            --output {output.node_data} 2>{log}
+            --tree {input.tree:q} \
+            --ancestral-sequences {input.node_data:q} \
+            --reference-sequence {input.genemap:q} \
+            --output {output.node_data:q} \
+          2>{log:q}
         """
 
 
@@ -66,9 +68,10 @@ rule traits:
     shell:
         """
         augur traits \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --output-node-data {output.node_data} \
-            --columns {params.columns} \
-            --confidence 2>{log}
+            --tree {input.tree:q} \
+            --metadata {input.metadata:q} \
+            --output-node-data {output.node_data:q} \
+            --columns {params.columns:q} \
+            --confidence \
+          2>{log:q}
         """

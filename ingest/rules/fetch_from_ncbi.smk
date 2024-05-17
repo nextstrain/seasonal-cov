@@ -19,7 +19,7 @@ rule fetch_ncbi_dataset_package:
         """
         datasets download virus genome taxon {params.ncbi_taxon_id:q} \
             --no-progressbar \
-            --filename {output.dataset_package} \
+            --filename {output.dataset_package:q} \
           2> {log:q}
         """
 
@@ -35,9 +35,10 @@ rule extract_ncbi_dataset_sequences:
         "benchmarks/{virus}/extract_ncbi_dataset_sequences.txt"
     shell:
         """
-        unzip -jp {input.dataset_package} \
-            ncbi_dataset/data/genomic.fna > {output.ncbi_dataset_sequences} \
-          2> {log:q}
+        unzip -jp {input.dataset_package:q} \
+            ncbi_dataset/data/genomic.fna \
+          > {output.ncbi_dataset_sequences:q} \
+         2> {log:q}
         """
 
 
@@ -88,9 +89,10 @@ rule format_ncbi_dataset_report:
     shell:
         """
         dataformat tsv virus-genome \
-            --package {input.dataset_package} \
+            --package {input.dataset_package:q} \
             --fields {params.fields_to_include:q} \
-            > {output.ncbi_dataset_tsv} 2> {log:q}
+          > {output.ncbi_dataset_tsv:q} \
+         2> {log:q}
         """
 
 
@@ -111,11 +113,12 @@ rule format_ncbi_datasets_ndjson:
     shell:
         """
         augur curate passthru \
-            --metadata {input.ncbi_dataset_tsv} \
-            --fasta {input.ncbi_dataset_sequences} \
+            --metadata {input.ncbi_dataset_tsv:q} \
+            --fasta {input.ncbi_dataset_sequences:q} \
             --seq-id-column Accession \
             --seq-field sequence \
             --unmatched-reporting warn \
             --duplicate-reporting warn \
-            2> {log} > {output.ndjson}
+          > {output.ndjson:q} \
+         2> {log:q}
         """
