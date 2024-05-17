@@ -14,11 +14,15 @@ from NCBI and outputs the clean data as two separate files:
 rule fetch_general_geolocation_rules:
     output:
         general_geolocation_rules="data/general-geolocation-rules.tsv",
+    log:
+        "logs/fetch_general_geolocation_rules.txt",
+    benchmark:
+        "benchmarks/fetch_general_geolocation_rules.txt"
     params:
         geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
         """
-        curl {params.geolocation_rules_url} > {output.general_geolocation_rules}
+        curl {params.geolocation_rules_url} > {output.general_geolocation_rules} 2> {log}
         """
 
 
@@ -28,9 +32,14 @@ rule concat_geolocation_rules:
         local_geolocation_rules=config["curate"]["local_geolocation_rules"],
     output:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
+    log:
+        "logs/concat_geolocation_rules.txt",
+    benchmark:
+        "benchmarks/concat_geolocation_rules.txt"
     shell:
         """
-        cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
+        cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules} \
+          2> {log}
         """
 
 
@@ -104,10 +113,14 @@ rule subset_metadata:
         metadata="results/{virus}/all_metadata.tsv",
     output:
         subset_metadata="results/{virus}/subset_metadata.tsv",
+    log:
+        "logs/{virus}/subset_metadata.txt",
+    benchmark:
+        "benchmarks/{virus}/subset_metadata.txt"
     params:
         metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
         """
         tsv-select -H -f {params.metadata_fields} \
-            {input.metadata} > {output.subset_metadata}
+            {input.metadata} > {output.subset_metadata} 2> {log}
         """

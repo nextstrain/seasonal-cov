@@ -16,15 +16,21 @@ rule export:
         auspice_config="config/{virus}/auspice_config.json",
     output:
         auspice_json="auspice/{virus}.json",
+    log:
+        "logs/{virus}/export.txt",
+    benchmark:
+        "benchmarks/{virus}/export.txt"
     shell:
         """
-        export AUGUR_RECURSION_LIMIT=10000;
-        augur export v2 \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts}  \
-            --include-root-sequence \
-            --auspice-config {input.auspice_config} \
-            --include-root-sequence \
-            --output {output.auspice_json}
+        (
+          export AUGUR_RECURSION_LIMIT=10000;
+          augur export v2 \
+              --tree {input.tree} \
+              --metadata {input.metadata} \
+              --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts}  \
+              --include-root-sequence \
+              --auspice-config {input.auspice_config} \
+              --include-root-sequence \
+              --output {output.auspice_json}
+        ) 2>{log}
         """

@@ -14,6 +14,10 @@ rule ancestral:
         alignment="results/{virus}/aligned.fasta",
     output:
         node_data="results/{virus}/nt_muts.json",
+    log:
+        "logs/{virus}/ancestral.txt",
+    benchmark:
+        "benchmarks/{virus}/ancestral.txt"
     params:
         inference=lambda wildcards: config[wildcards.virus]["annotate_phylogeny"]["inference"],
     shell:
@@ -22,7 +26,7 @@ rule ancestral:
             --tree {input.tree} \
             --alignment {input.alignment} \
             --output-node-data {output.node_data} \
-            --inference {params.inference}
+            --inference {params.inference} 2>{log}
         """
 
 
@@ -33,13 +37,17 @@ rule translate:
         genemap=lambda wildcards: config[wildcards.virus]["genemap"],
     output:
         node_data="results/{virus}/aa_muts.json",
+    log:
+        "logs/{virus}/translate.txt",
+    benchmark:
+        "benchmarks/{virus}/translate.txt"
     shell:
         """
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
             --reference-sequence {input.genemap} \
-            --output {output.node_data} \
+            --output {output.node_data} 2>{log}
         """
 
 
@@ -49,6 +57,10 @@ rule traits:
         metadata=lambda wildcards: config[wildcards.virus]["metadata"],
     output:
         node_data="results/{virus}/traits.json",
+    log:
+        "logs/{virus}/traits.txt",
+    benchmark:
+        "benchmarks/{virus}/traits.txt"
     params:
         columns=lambda wildcards: config[wildcards.virus]["annotate_phylogeny"]["columns"],
     shell:
@@ -58,5 +70,5 @@ rule traits:
             --metadata {input.metadata} \
             --output-node-data {output.node_data} \
             --columns {params.columns} \
-            --confidence
+            --confidence 2>{log}
         """

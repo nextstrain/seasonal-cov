@@ -18,6 +18,10 @@ rule filter:
         exclude="config/{virus}/dropped_strains.txt",
     output:
         sequences="results/{virus}/filtered.fasta",
+    log:
+        "logs/{virus}/filter.txt",
+    benchmark:
+        "benchmarks/{virus}/filter.txt"
     params:
         group_by=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["group_by"],
         sequences_per_group=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
@@ -32,7 +36,7 @@ rule filter:
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
-            --min-length {params.min_length}
+            --min-length {params.min_length} 2>{log}
         """
 
 
@@ -44,12 +48,18 @@ rule align:
     output:
         alignment="results/{virus}/aligned.fasta",
         insertions="results/{virus}/insertions.tsv",
+    log:
+        "logs/{virus}/align.txt",
+    benchmark:
+        "benchmarks/{virus}/align.txt"
     shell:
         """
-        nextclade run \
-            --input-ref {input.reference} \
-            --input-annotation {input.genemap} \
-            --output-fasta - \
-            --output-tsv {output.insertions} \
-            {input.sequences} | seqkit seq -i > {output.alignment}
+        (
+          nextclade run \
+              --input-ref {input.reference} \
+              --input-annotation {input.genemap} \
+              --output-fasta - \
+              --output-tsv {output.insertions} \
+              {input.sequences} | seqkit seq -i > {output.alignment}
+        ) 2>{log}
         """
