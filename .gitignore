@@ -1,20 +1,13 @@
 # pipeline output #
 ##############
 ingest/benchmarks
-ingest/benchmarks/*
 ingest/data
-ingest/data/*
 ingest/logs
-ingest/logs/*
 ingest/results
-ingest/results/*
 phylogenetic/auspice
-phylogenetic/auspice/*
 phylogenetic/benchmarks
 phylogenetic/logs
-phylogenetic/logs/*
 phylogenetic/results
-phylogenetic/results/*
 
 
 # Snakemake state dir #
