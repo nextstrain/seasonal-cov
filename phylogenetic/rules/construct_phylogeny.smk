@@ -22,7 +22,7 @@ rule tree:
 
 rule refine:
     input:
-        tree = rules.tree.output.tree,
+        tree = "results/{virus}/tree_raw.nwk"
         alignment = "results/{virus}/aligned.fasta",
         metadata = lambda wildcards:config[wildcards.virus]["metadata"]
     output:

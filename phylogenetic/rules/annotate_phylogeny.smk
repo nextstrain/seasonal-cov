@@ -28,7 +28,7 @@ rule ancestral:
 rule translate:
     input:
         tree = "results/{virus}/tree.nwk",
-        node_data = rules.ancestral.output.node_data,
+        node_data = "results/{virus}/nt_muts.json",
         genemap = lambda wildcards:config[wildcards.virus]["genemap"]
     output:
         node_data = "results/{virus}/aa_muts.json"

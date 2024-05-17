@@ -38,7 +38,7 @@ rule filter:
 
 rule align:
     input:
-        sequences=rules.filter.output.sequences,
+        sequences="results/{virus}/filtered.fasta",
         reference=lambda wildcards: config[wildcards.virus]["reference"],
         genemap=lambda wildcards: config[wildcards.virus]["genemap"],
     output:
