@@ -39,7 +39,6 @@
   annotate_phylogeny:
     inference: "joint"
     columns: "country"
-
 nl63:
   reference: "config/nl63/reference.fasta"
   genemap: "config/nl63/genemap.gff"
@@ -58,7 +57,6 @@ nl63:
   annotate_phylogeny:
     inference: "joint"
     columns: "country"
-
 oc43:
   reference: "config/oc43/reference.fasta"
   genemap: "config/oc43/genemap.gff"
@@ -77,7 +75,6 @@ oc43:
   annotate_phylogeny:
     inference: "joint"
     columns: "country"
-
 hku1:
   reference: "config/hku1/reference.fasta"
   genemap: "config/hku1/genemap.gff"
