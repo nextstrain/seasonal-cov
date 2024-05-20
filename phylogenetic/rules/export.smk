@@ -22,15 +22,13 @@ rule export:
         "benchmarks/{virus}/export.txt"
     shell:
         """
-        (
-          export AUGUR_RECURSION_LIMIT=10000;
-          augur export v2 \
-              --tree {input.tree:q} \
-              --metadata {input.metadata:q} \
-              --node-data {input.branch_lengths:q} {input.nt_muts:q} {input.aa_muts:q}  \
-              --include-root-sequence \
-              --auspice-config {input.auspice_config:q} \
-              --include-root-sequence \
-              --output {output.auspice_json:q}
-        ) 2>{log:q}
+        augur export v2 \
+          --tree {input.tree:q} \
+          --metadata {input.metadata:q} \
+          --node-data {input.branch_lengths:q} {input.nt_muts:q} {input.aa_muts:q}  \
+          --include-root-sequence \
+          --auspice-config {input.auspice_config:q} \
+          --include-root-sequence \
+          --output {output.auspice_json:q} \
+        2>{log:q}
         """
