@@ -6,6 +6,7 @@ GenBank by verifying that the 'database' field has a value of "GenBank" or "RefS
 
 Outputs the modified record to stdout.
 """
+
 import json
 from sys import stdin, stdout
 

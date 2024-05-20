@@ -5,6 +5,7 @@ stdin. Adds a 'strain' field to the record if it does not already exist.
 
 Outputs the modified records to stdout.
 """
+
 import argparse
 import json
 import re

@@ -40,7 +40,7 @@ REFERENCE   4  (bases 1 to 27553)
             Amsterdam 1105 AZ, The Netherlands
 COMMENT     PROVISIONAL REFSEQ: This record has not yet been subject to final
             NCBI review. The reference sequence is identical to AY567487.
-            
+
             On Jun 24, 2004 this sequence version replaced NC_005831.1.
             COMPLETENESS: full length.
 FEATURES             Location/Qualifiers
@@ -385,7 +385,7 @@ FEATURES             Location/Qualifiers
      3'UTR           27267..27553
                      /inference="non-experimental evidence, no additional
                      details recorded"
-ORIGIN      
+ORIGIN
         1 cttaaagaat ttttctatct atagatagag aattttctta tttagacttt gtgtctactc
        61 ttctcaacta aacgaaattt ttctagtgct gtcatttgtt atggcagtcc tagtgtaatt
       121 gaaatttcgt caagtttgta aactggttag gcaagtgttg tattttctgt gtctaagcac

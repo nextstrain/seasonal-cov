@@ -41,7 +41,7 @@ REFERENCE   4  (bases 1 to 29926)
             Hong Kong, China
 COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
             reference sequence was derived from AY597011.
-            
+
             On Jan 23, 2006 this sequence version replaced NC_006577.1.
             The mature peptides were designated nsp1 through nsp16 following
             the nomenclature used in the MHV-A59 and SARS-CoV RefSeqs
@@ -608,7 +608,7 @@ FEATURES             Location/Qualifiers
                      QLMVNKSSCYRDGISTISVPAHMPMHPMVNPSKGSSGLLITKLTLLLPPMFRQGILLL
                      KKLSLLGFRLVRFCLKAIMLKAQEGLLLIVDQVHVLNHVDPIIVH"
      3'UTR           28960..29926
-ORIGIN      
+ORIGIN
         1 gagtttgagc gattgacgtt cgtaccgtct atcagcttac gatctcttgt cagatctcat
        61 taaatctaaa ctttttaaac aagattccct gttatccatg cttgtgagtg tggtttaatc
       121 ataatcttgt attttacttt ccacactttt catctctctg ccagtgacgt gttggttgtc

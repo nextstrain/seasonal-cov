@@ -4,6 +4,7 @@ and outputs them as a single NDJSON file that can be directly fed into the
 curation pipeline.
 """
 
+
 rule fetch_ncbi_dataset_package:
     params:
         ncbi_taxon_id=lambda wildcards: config[wildcards.virus]["ncbi_taxon_id"],
