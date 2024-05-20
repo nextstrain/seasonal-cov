@@ -1,9 +1,11 @@
-VIRUSES = ['229e', 'nl63', 'oc43', 'hku1']
+VIRUSES = ["229e", "nl63", "oc43", "hku1"]
+
 
 rule all:
     input:
         expand("results/{virus}/sequences.fasta", virus=VIRUSES),
-        expand("results/{virus}/metadata.tsv", virus=VIRUSES)
+        expand("results/{virus}/metadata.tsv", virus=VIRUSES),
+
 
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
 configfile: "config/defaults.yaml"
@@ -13,21 +15,22 @@ include: "rules/fetch_from_ncbi.smk"
 include: "rules/curate.smk"
 
 
-# If included, the nextclade rules will create the final metadata TSV by
-# joining the Nextclade output with the metadata.
-# However, if not including nextclade, we have to rename the subset metadata TSV
-# to the final metadata TSV.
+# If included, the nextclade rules will create the final metadata TSV
+# by joining the Nextclade output with the metadata. However, if not
+# including nextclade, we have to rename the subset metadata TSV to
+# the final metadata TSV.
 if "nextclade" in config:
+
     include: "rules/nextclade.smk"
 
 else:
 
     rule create_final_metadata:
         input:
-            metadata="results/{virus}/subset_metadata.tsv"
+            metadata="results/{virus}/subset_metadata.tsv",
         output:
-            metadata="results/{virus}/metadata.tsv"
+            metadata="results/{virus}/metadata.tsv",
         shell:
             """
-            mv {input.metadata} {output.metadata}
+            mv {input.metadata:q} {output.metadata:q}
             """

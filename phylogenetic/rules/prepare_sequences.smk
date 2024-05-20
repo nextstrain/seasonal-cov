@@ -12,18 +12,16 @@ and will produce an aligned FASTA file of subsampled sequences as an output.
 
 
 rule filter:
-    message:
-        """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
-          - minimum genome length of {params.min_length}
-        """
     input:
         sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],
         metadata=lambda wildcards: config[wildcards.virus]["metadata"],
         exclude="config/{virus}/dropped_strains.txt",
     output:
         sequences="results/{virus}/filtered.fasta",
+    log:
+        "logs/{virus}/filter.txt",
+    benchmark:
+        "benchmarks/{virus}/filter.txt"
     params:
         group_by=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["group_by"],
         sequences_per_group=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
@@ -31,36 +29,39 @@ rule filter:
     shell:
         """
         augur filter \
-            --sequences {input.sequences} \
-            --metadata {input.metadata} \
-            --exclude {input.exclude} \
+            --sequences {input.sequences:q} \
+            --metadata {input.metadata:q} \
+            --exclude {input.exclude:q} \
             --exclude-where "host!=Homo sapiens" \
-            --output {output.sequences} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
-            --min-length {params.min_length}
+            --output {output.sequences:q} \
+            --group-by {params.group_by:q} \
+            --sequences-per-group {params.sequences_per_group:q} \
+            --min-length {params.min_length:q} \
+          2>{log:q}
         """
 
 
 rule align:
-    message:
-        """
-        Aligning sequences to {input.reference}
-          - filling gaps with N
-        """
     input:
-        sequences=rules.filter.output.sequences,
+        sequences="results/{virus}/filtered.fasta",
         reference=lambda wildcards: config[wildcards.virus]["reference"],
         genemap=lambda wildcards: config[wildcards.virus]["genemap"],
     output:
         alignment="results/{virus}/aligned.fasta",
         insertions="results/{virus}/insertions.tsv",
+    log:
+        "logs/{virus}/align.txt",
+    benchmark:
+        "benchmarks/{virus}/align.txt"
     shell:
         """
-        nextclade run \
-            --input-ref {input.reference} \
-            --input-annotation {input.genemap} \
-            --output-fasta - \
-            --output-tsv {output.insertions} \
-            {input.sequences} | seqkit seq -i > {output.alignment}
+        (
+          nextclade run \
+              --input-ref {input.reference:q} \
+              --input-annotation {input.genemap:q} \
+              --output-fasta - \
+              --output-tsv {output.insertions:q} \
+              {input.sequences:q} \
+          | seqkit seq -i > {output.alignment:q} \
+        ) 2>{log:q}
         """

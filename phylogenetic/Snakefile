@@ -1,8 +1,10 @@
-VIRUSES = ['229e', 'nl63', 'oc43', 'hku1']
+VIRUSES = ["229e", "nl63", "oc43", "hku1"]
+
 
 rule all:
     input:
-        expand("auspice/{virus}.json", virus=VIRUSES)
+        expand("auspice/{virus}.json", virus=VIRUSES),
+
 
 # Use default configuration values. Override with Snakemake's --configfile/--config options.
 configfile: "config/defaults.yaml"
