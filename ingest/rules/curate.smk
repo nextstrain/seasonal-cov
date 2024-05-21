@@ -65,7 +65,7 @@ rule curate:
         sequences_ndjson="data/{virus}/ncbi.ndjson",
         # Change the geolocation_rules input path if you are removing the above two rules
         all_geolocation_rules="data/all-geolocation-rules.tsv",
-        annotations=lambda wildcards: config[wildcards.virus]["annotations"],
+        annotations="config/{virus}/annotations.tsv",
     output:
         metadata="results/{virus}/all_metadata.tsv",
         sequences="results/{virus}/sequences.fasta",
