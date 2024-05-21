@@ -1,3 +1,12 @@
+# virus species in this dataset
+# NOTE: when adding a new species, you must also add a top level key
+# with the species name pointing to specific information.
+viruses:
+  - "229e"
+  - "nl63"
+  - "oc43"
+  - "hku1"
+
 # virus-specific information
 # for each virus, give the NCBI taxon ID (required for data fetch from
 # NCBI datasets) and the path to the manual annotations file, relative
