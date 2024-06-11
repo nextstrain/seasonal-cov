@@ -1,14 +1,11 @@
-VIRUSES = ["229e", "nl63", "oc43", "hku1"]
+# Use default configuration values. Override with Snakemake's --configfile/--config options.
+configfile: "config/defaults.yaml"
 
 
 rule all:
     input:
-        expand("results/{virus}/sequences.fasta", virus=VIRUSES),
-        expand("results/{virus}/metadata.tsv", virus=VIRUSES),
-
-
-# Use default configuration values. Override with Snakemake's --configfile/--config options.
-configfile: "config/defaults.yaml"
+        expand("results/{virus}/sequences.fasta", virus=config["viruses"]),
+        expand("results/{virus}/metadata.tsv", virus=config["viruses"]),
 
 
 include: "rules/fetch_from_ncbi.smk"
