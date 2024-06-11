@@ -24,7 +24,7 @@ rule filter:
         "benchmarks/{virus}/filter.txt"
     params:
         group_by=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["group_by"],
-        sequences_per_group=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences_per_group"],
+        subsample_max_sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["subsample_max_sequences"],
         min_length=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["min_length"],
     shell:
         """
@@ -35,7 +35,7 @@ rule filter:
             --exclude-where "host!=Homo sapiens" \
             --output {output.sequences:q} \
             --group-by {params.group_by:q} \
-            --sequences-per-group {params.sequences_per_group:q} \
+            --subsample-max-sequences {params.subsample_max_sequences:q} \
             --min-length {params.min_length:q} \
           2>{log:q}
         """
