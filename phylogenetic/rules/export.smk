@@ -15,7 +15,7 @@ rule export:
         aa_muts="results/{virus}/aa_muts.json",
         auspice_config="config/{virus}/auspice_config.json",
     output:
-        auspice_json="auspice/{virus}.json",
+        auspice_json="auspice/seasonal-cov_{virus}.json",
     log:
         "logs/{virus}/export.txt",
     benchmark:

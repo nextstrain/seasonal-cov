@@ -4,7 +4,7 @@ configfile: "config/defaults.yaml"
 
 rule all:
     input:
-        expand("auspice/{virus}.json", virus=config["viruses"]),
+        expand("auspice/seasonal-cov_{virus}.json", virus=config["viruses"]),
 
 
 include: "rules/prepare_sequences.smk"

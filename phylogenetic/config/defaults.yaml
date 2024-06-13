@@ -18,7 +18,7 @@ viruses:
 #   sequences = path to the sequence FASTA file
 #   # augur filter param values:
 #   group_by
-#   sequences_per_group
+#   subsample_max_sequences
 #   min_length
 # construct_phylogeny = parameters related to tree building pipeline
 #   # augur refine param values
@@ -37,7 +37,7 @@ viruses:
   prepare_sequences:
     sequences: "../ingest/results/229e/sequences.fasta"
     group_by: "country"
-    sequences_per_group: 5000
+    subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
     clock_rate: ""
@@ -55,7 +55,7 @@ nl63:
   prepare_sequences:
     sequences: "../ingest/results/nl63/sequences.fasta"
     group_by: "country"
-    sequences_per_group: 5000
+    subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
     clock_rate: 0.000120
@@ -73,7 +73,7 @@ oc43:
   prepare_sequences:
     sequences: "../ingest/results/oc43/sequences.fasta"
     group_by: "country"
-    sequences_per_group: 5000
+    subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
     clock_rate: ""
@@ -91,7 +91,7 @@ hku1:
   prepare_sequences:
     sequences: "../ingest/results/hku1/sequences.fasta"
     group_by: "country"
-    sequences_per_group: 5000
+    subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
     clock_rate: 0.000120
