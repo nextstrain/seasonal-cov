@@ -3,6 +3,12 @@
   "maintainers": [
     {"name": "Katie Kistler"}
   ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
   "colorings": [
      {
       "key": "gt",
