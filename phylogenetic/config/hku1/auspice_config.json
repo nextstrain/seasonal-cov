@@ -20,12 +20,12 @@
     },
     {
       "key": "country",
-      "title": "country",
+      "title": "Country",
       "type": "categorical"
     },
     {
       "key": "region",
-      "title": "region",
+      "title": "Region",
       "type": "categorical"
     }
   ],
