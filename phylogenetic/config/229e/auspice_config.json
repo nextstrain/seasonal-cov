@@ -1,7 +1,9 @@
 {
-  "title": "Genetic diversity of Human 229E",
+  "title": "Genomic epidemiology of seasonal coronavirus 229E",
   "maintainers": [
-    {"name": "Katie Kistler"}
+    {"name": "Katie Kistler", "url": "https://bedford.io/team/katie-kistler/"},
+    {"name": "John SJ Anderson", "url": "https://bedford.io/team/john-sj-anderson/"},
+    {"name": "the Nextstrain team", "url": "https://nextstrain.org/team"}
   ],
   "data_provenance": [
     {
@@ -9,6 +11,7 @@
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
+  "build_url": "https://github.com/nextstrain/seasonal-cov",
   "colorings": [
      {
       "key": "gt",
@@ -21,17 +24,22 @@
       "type": "categorical"
     },
     {
-      "key": "host",
-      "title": "host",
+      "key": "region",
+      "title": "region",
       "type": "categorical"
     }
+  ],
+  "geo_resolutions": [
+    "country",
+    "region"
   ],
   "display_defaults": {
     "color_by": "country",
     "map_triplicate": true
   },
   "filters": [
-    "host"
+    "country",
+    "region"
   ],
   "panels": [
     "tree",
