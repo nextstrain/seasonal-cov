@@ -13,6 +13,7 @@ rule export:
         branch_lengths="results/{virus}/branch_lengths.json",
         nt_muts="results/{virus}/nt_muts.json",
         aa_muts="results/{virus}/aa_muts.json",
+        description="config/description.md",
         auspice_config="config/auspice_config.json",
     output:
         auspice_json="auspice/seasonal-cov_{virus}.json",
@@ -29,6 +30,7 @@ rule export:
           --metadata {input.metadata:q} \
           --node-data {input.branch_lengths:q} {input.nt_muts:q} {input.aa_muts:q}  \
           --include-root-sequence \
+          --description {input.description:q} \
           --auspice-config {input.auspice_config:q} \
           --title {params.auspice_title:q} \
           --include-root-sequence \
