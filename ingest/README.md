@@ -10,10 +10,10 @@ workflow to curate your own data.
 
 ## Config
 
-The config directory contains all of the default configurations for
+The `defaults` directory contains all of the default configurations for
 the ingest workflow.
 
-[config/defaults.yaml][] contains all of the default configuration
+[defaults/config.yaml][] contains all of the default configuration
 parameters used for the ingest workflow. Use Snakemake's
 `--configfile`/`--config` options to override these default values.
 
@@ -33,7 +33,7 @@ scripts in [vendored][], from [nextstrain/ingest][]
 See [vendored/README.md][] for instructions on how to update the
 vendored scripts.
 
-[config/defaults.yaml]: ./config/defaults.yaml
+[defaults/config.yaml]: ./defaults/config.yaml
 [`git subrepo`]: https://github.com/ingydotnet/git-subrepo
 [included]: https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#includes
 [nextstrain/ingest]: https://github.com/nextstrain/ingest

@@ -32,7 +32,7 @@ curate:
 
   # The path to the local geolocation rules within the pathogen repo
   # The path should be relative to the ingest directory.
-  local_geolocation_rules: "config/geolocation_rules.tsv"
+  local_geolocation_rules: "defaults/geolocation_rules.tsv"
 
   # List of field names to change in the format of <old_field_name>=<new_field_name>
   # This is the first step in the pipeline, so any references to field names

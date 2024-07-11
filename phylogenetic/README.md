@@ -17,7 +17,7 @@ please do any desired data formatting and curations as part of the
 
 ## Config
 
-[config/defaults.yaml][] contains all of the
+[defaults/config.yaml][] contains all of the
 default configuration parameters used for the phylogenetic workflow.
 Use Snakemake's `--configfile`/`--config` options to override these
 default values.
@@ -30,7 +30,7 @@ separate files to keep the main ingest [Snakefile][] succinct and
 organized. Modules are all [included][] in the main Snakefile in the
 order that they are expected to run.
 
-[config/defaults.yaml]: ./config/defaults.yaml
+[defaults/config.yaml]: ./defaults/config.yaml
 [included]: https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#includes
 [ingest]: ../ingest/
 [Nextstrain datasets]: https://docs.nextstrain.org/en/latest/reference/glossary.html#term-dataset
