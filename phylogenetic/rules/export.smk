@@ -13,8 +13,8 @@ rule export:
         branch_lengths="results/{virus}/branch_lengths.json",
         nt_muts="results/{virus}/nt_muts.json",
         aa_muts="results/{virus}/aa_muts.json",
-        description="config/description.md",
-        auspice_config="config/auspice_config.json",
+        description="defaults/description.md",
+        auspice_config="defaults/auspice_config.json",
     output:
         auspice_json="auspice/seasonal-cov_{virus}.json",
     params:

@@ -31,8 +31,8 @@ viruses:
 #   inference = ancestral sequence reconstruction param
 #   columns = ancestral traits param
 229e:
-  reference: "config/229e/reference.fasta"
-  genemap: "config/229e/genemap.gff"
+  reference: "defaults/229e/reference.fasta"
+  genemap: "defaults/229e/genemap.gff"
   metadata: "../ingest/results/229e/metadata.tsv"
   prepare_sequences:
     sequences: "../ingest/results/229e/sequences.fasta"
@@ -49,8 +49,8 @@ viruses:
     inference: "joint"
     columns: "country"
 nl63:
-  reference: "config/nl63/reference.fasta"
-  genemap: "config/nl63/genemap.gff"
+  reference: "defaults/nl63/reference.fasta"
+  genemap: "defaults/nl63/genemap.gff"
   metadata: "../ingest/results/nl63/metadata.tsv"
   prepare_sequences:
     sequences: "../ingest/results/nl63/sequences.fasta"
@@ -67,8 +67,8 @@ nl63:
     inference: "joint"
     columns: "country"
 oc43:
-  reference: "config/oc43/reference.fasta"
-  genemap: "config/oc43/genemap.gff"
+  reference: "defaults/oc43/reference.fasta"
+  genemap: "defaults/oc43/genemap.gff"
   metadata: "../ingest/results/oc43/metadata.tsv"
   prepare_sequences:
     sequences: "../ingest/results/oc43/sequences.fasta"
@@ -85,8 +85,8 @@ oc43:
     inference: "joint"
     columns: "country"
 hku1:
-  reference: "config/hku1/reference.fasta"
-  genemap: "config/hku1/genemap.gff"
+  reference: "defaults/hku1/reference.fasta"
+  genemap: "defaults/hku1/genemap.gff"
   metadata: "../ingest/results/hku1/metadata.tsv"
   prepare_sequences:
     sequences: "../ingest/results/hku1/sequences.fasta"

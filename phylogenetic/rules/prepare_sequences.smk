@@ -15,7 +15,7 @@ rule filter:
     input:
         sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],
         metadata=lambda wildcards: config[wildcards.virus]["metadata"],
-        exclude="config/{virus}/dropped_strains.txt",
+        exclude="defaults/{virus}/dropped_strains.txt",
     output:
         sequences="results/{virus}/filtered.fasta",
     log:
