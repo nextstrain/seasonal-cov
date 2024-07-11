@@ -31,3 +31,16 @@ else:
             """
             mv {input.metadata:q} {output.metadata:q}
             """
+
+rule clean:
+    params:
+        targets = [
+            "benchmarks",
+            "data",
+            "logs",
+            "results",
+            ]
+    shell:
+        """
+        rm -rfv {params.targets}
+        """

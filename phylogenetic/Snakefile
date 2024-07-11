@@ -11,3 +11,17 @@ include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
 include: "rules/export.smk"
+
+
+rule clean:
+    params:
+        targets = [
+            "auspice",
+            "data",
+            "logs",
+            "results",
+            ]
+    shell:
+        """
+        rm -rfv {params.targets}
+        """
