@@ -2,3 +2,53 @@ OK662398.1
 OK625404.1
 MZ712010.1
 PP810610.1 # extreme outlier in tree
+KF293666.1 # excluded because of repeated cell passage under selection
+KF293665.1 # excluded because of repeated cell passage under selection
+KF293664.1 # excluded because of repeated cell passage under selection
+KF293663.1 # excluded because of repeated cell passage under selection
+KF293662.1 # excluded because of repeated cell passage under selection
+KF285482.1 # excluded because of repeated cell passage under selection
+KF285481.1 # excluded because of repeated cell passage under selection
+KF285480.1 # excluded because of repeated cell passage under selection
+KF285479.1 # excluded because of repeated cell passage under selection
+KF285478.1 # excluded because of repeated cell passage under selection
+KF285477.1 # excluded because of repeated cell passage under selection
+KF285476.1 # excluded because of repeated cell passage under selection
+KF285475.1 # excluded because of repeated cell passage under selection
+KF285474.1 # excluded because of repeated cell passage under selection
+KF285473.1 # excluded because of repeated cell passage under selection
+KF285472.1 # excluded because of repeated cell passage under selection
+KF285471.1 # excluded because of repeated cell passage under selection
+KF285470.1 # excluded because of repeated cell passage under selection
+HH977460.1 # excluded because of short sequence length
+GN352064.1 # excluded because of short sequence length
+GN352063.1 # excluded because of short sequence length
+GN352062.1 # excluded because of short sequence length
+GN352061.1 # excluded because of short sequence length
+GN352060.1 # excluded because of short sequence length
+GN352059.1 # excluded because of short sequence length
+GN352058.1 # excluded because of short sequence length
+GN352057.1 # excluded because of short sequence length
+GN352056.1 # excluded because of short sequence length
+GN352055.1 # excluded because of short sequence length
+GN352054.1 # excluded because of short sequence length
+GN352053.1 # excluded because of short sequence length
+FW337969.1 # excluded because of short sequence length
+FW337968.1 # excluded because of short sequence length
+DL470169.1 # excluded because of short sequence length
+DJ009221.1 # excluded because of short sequence length
+DJ009220.1 # excluded because of short sequence length
+DJ009219.1 # excluded because of short sequence length
+DJ009218.1 # excluded because of short sequence length
+DJ009217.1 # excluded because of short sequence length
+DJ009216.1 # excluded because of short sequence length
+DJ009215.1 # excluded because of short sequence length
+DJ009214.1 # excluded because of short sequence length
+CS123986.1 # excluded because of short sequence length
+CS123984.1 # excluded because of short sequence length
+CS123982.1 # excluded because of short sequence length
+CS123980.1 # excluded because of short sequence length
+CS123978.1 # excluded because of short sequence length
+CS123977.1 # excluded because of short sequence length
+CS123975.1 # excluded because of short sequence length
+CS123973.1 # excluded because of short sequence length

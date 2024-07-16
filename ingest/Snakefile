@@ -35,6 +35,7 @@ else:
 rule clean:
     params:
         targets = [
+            ".snakemake",
             "benchmarks",
             "data",
             "logs",

@@ -48,7 +48,6 @@ curate:
     Submitter Names: authors
     Submitter Affiliation: institution
     SRA Accessions: sra_accession
-    passage_type: passage_type
 
   # List of date fields to standardize to ISO format YYYY-MM-DD
   date_fields: ["date"]
@@ -116,7 +115,6 @@ curate:
     - region
     - country
     - host
-    - passage_type
     - sra_accession
     - abbr_authors
     - authors
