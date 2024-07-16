@@ -77,6 +77,7 @@ rule curate:
         field_map=format_field_map(config["curate"]["field_map"]),
         date_fields=config["curate"]["date_fields"],
         expected_date_formats=config["curate"]["expected_date_formats"],
+        genbank_location_field=config["curate"]["genbank_location_field"],
         articles=config["curate"]["titlecase"]["articles"],
         abbreviations=config["curate"]["titlecase"]["abbreviations"],
         titlecase_fields=config["curate"]["titlecase"]["fields"],
@@ -91,32 +92,32 @@ rule curate:
         """
         (
           cat {input.sequences_ndjson:q} \
-            | ./vendored/transform-field-names \
+            | augur curate rename \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
             | augur curate format-dates \
                 --date-fields {params.date_fields:q} \
                 --expected-date-formats {params.expected_date_formats:q} \
-            | ./vendored/transform-genbank-location \
+            | augur curate parse-genbank-location \
+                --location-field {params.genbank_location_field:q} \
             | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields:q} \
                 --articles {params.articles:q} \
                 --abbreviations {params.abbreviations:q} \
-            | ./vendored/transform-authors \
+            | augur curate abbreviate-authors \
                 --authors-field {params.authors_field:q} \
                 --default-value {params.authors_default_value:q} \
                 --abbr-authors-field {params.abbr_authors_field:q} \
-            | ./vendored/apply-geolocation-rules \
+            | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules:q} \
-            | ./vendored/merge-user-metadata \
+            | augur curate apply-record-annotations \
                 --annotations {input.annotations:q} \
                 --id-field {params.annotations_id:q} \
-            | augur curate passthru \
                 --output-metadata {output.metadata:q} \
                 --output-fasta {output.sequences:q} \
                 --output-id-field {params.id_field:q} \
                 --output-seq-field {params.sequence_field}
-        ) 2>> {log:q}
+        ) 2> {log:q}
         """
 
 
