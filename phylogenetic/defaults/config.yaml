@@ -47,7 +47,6 @@ viruses:
     clock_filter_iqd: 4
   annotate_phylogeny:
     inference: "joint"
-    columns: "country"
 nl63:
   reference: "defaults/nl63/reference.fasta"
   genemap: "defaults/nl63/genemap.gff"
@@ -65,7 +64,6 @@ nl63:
     clock_filter_iqd: 4
   annotate_phylogeny:
     inference: "joint"
-    columns: "country"
 oc43:
   reference: "defaults/oc43/reference.fasta"
   genemap: "defaults/oc43/genemap.gff"
@@ -83,7 +81,6 @@ oc43:
     clock_filter_iqd: 4
   annotate_phylogeny:
     inference: "joint"
-    columns: "country"
 hku1:
   reference: "defaults/hku1/reference.fasta"
   genemap: "defaults/hku1/genemap.gff"
@@ -101,4 +98,3 @@ hku1:
     clock_filter_iqd: 4
   annotate_phylogeny:
     inference: "joint"
-    columns: "country"

@@ -51,27 +51,3 @@ rule translate:
             --output {output.node_data:q} \
           2>{log:q}
         """
-
-
-rule traits:
-    input:
-        tree="results/{virus}/tree.nwk",
-        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
-    output:
-        node_data="results/{virus}/traits.json",
-    log:
-        "logs/{virus}/traits.txt",
-    benchmark:
-        "benchmarks/{virus}/traits.txt"
-    params:
-        columns=lambda wildcards: config[wildcards.virus]["annotate_phylogeny"]["columns"],
-    shell:
-        """
-        augur traits \
-            --tree {input.tree:q} \
-            --metadata {input.metadata:q} \
-            --output-node-data {output.node_data:q} \
-            --columns {params.columns:q} \
-            --confidence \
-          2>{log:q}
-        """
