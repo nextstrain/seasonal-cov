@@ -9,7 +9,7 @@ tree and at least one node data JSON.
 rule export:
     input:
         tree="results/{virus}/tree.nwk",
-        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
+        metadata="data/{virus}/metadata.tsv",
         branch_lengths="results/{virus}/branch_lengths.json",
         nt_muts="results/{virus}/nt_muts.json",
         aa_muts="results/{virus}/aa_muts.json",
