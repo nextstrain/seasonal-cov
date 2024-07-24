@@ -1,0 +1,30 @@
+# This configuration file should contain all required configuration parameters
+# for the ingest workflow to run with additional Nextstrain automation rules.
+
+# Custom rules to run as part of the Nextstrain automated workflow
+# The paths should be relative to the ingest directory.
+custom_rules:
+  - build-configs/nextstrain-automation/upload.smk
+
+# Nextstrain CloudFront domain to ensure that we invalidate CloudFront after the S3 uploads
+# This is required as long as we are using the AWS CLI for uploads
+cloudfront_domain: "data.nextstrain.org"
+
+# Nextstrain AWS S3 Bucket with pathogen prefix
+# Replace <pathogen> with the pathogen repo name.
+s3_dst: "s3://nextstrain-data/files/workflows/seasonal-cov"
+
+# Mapping of files to upload
+files_to_upload:
+  229e/ncbi.ndjson.zst: data/229e/ncbi.ndjson
+  229e/metadata.tsv.zst: results/229e/metadata.tsv
+  229e/sequences.fasta.zst: results/229e/sequences.fasta
+  hku1/ncbi.ndjson.zst: data/hku1/ncbi.ndjson
+  hku1/metadata.tsv.zst: results/hku1/metadata.tsv
+  hku1/sequences.fasta.zst: results/hku1/sequences.fasta
+  nl63/ncbi.ndjson.zst: data/nl63/ncbi.ndjson
+  nl63/metadata.tsv.zst: results/nl63/metadata.tsv
+  nl63/sequences.fasta.zst: results/nl63/sequences.fasta
+  oc43/ncbi.ndjson.zst: data/oc43/ncbi.ndjson
+  oc43/metadata.tsv.zst: results/oc43/metadata.tsv
+  oc43/sequences.fasta.zst: results/oc43/sequences.fasta

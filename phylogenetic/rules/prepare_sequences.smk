@@ -11,10 +11,38 @@ and will produce an aligned FASTA file of subsampled sequences as an output.
 """
 
 
+rule download:
+    output:
+        sequences="data/{virus}/sequences.fasta.zst",
+        metadata="data/{virus}/metadata.tsv.zst",
+    params:
+        sequences_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/sequences.fasta.zst",
+        metadata_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/metadata.tsv.zst",
+    shell:
+        """
+        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
+        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        """
+
+
+rule decompress:
+    input:
+        sequences="data/{virus}/sequences.fasta.zst",
+        metadata="data/{virus}/metadata.tsv.zst",
+    output:
+        sequences="data/{virus}/sequences.fasta",
+        metadata="data/{virus}/metadata.tsv",
+    shell:
+        """
+        zstd -d -c {input.sequences} > {output.sequences}
+        zstd -d -c {input.metadata} > {output.metadata}
+        """
+
+
 rule filter:
     input:
-        sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["sequences"],
-        metadata=lambda wildcards: config[wildcards.virus]["metadata"],
+        sequences="data/{virus}/sequences.fasta",
+        metadata="data/{virus}/metadata.tsv",
         exclude="defaults/{virus}/dropped_strains.txt",
     output:
         sequences="results/{virus}/filtered.fasta",

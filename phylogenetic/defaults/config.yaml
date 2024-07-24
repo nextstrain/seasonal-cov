@@ -33,9 +33,7 @@ viruses:
 229e:
   reference: "defaults/229e/reference.fasta"
   genemap: "defaults/229e/genemap.gff"
-  metadata: "../ingest/results/229e/metadata.tsv"
   prepare_sequences:
-    sequences: "../ingest/results/229e/sequences.fasta"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -50,9 +48,7 @@ viruses:
 nl63:
   reference: "defaults/nl63/reference.fasta"
   genemap: "defaults/nl63/genemap.gff"
-  metadata: "../ingest/results/nl63/metadata.tsv"
   prepare_sequences:
-    sequences: "../ingest/results/nl63/sequences.fasta"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -67,9 +63,7 @@ nl63:
 oc43:
   reference: "defaults/oc43/reference.fasta"
   genemap: "defaults/oc43/genemap.gff"
-  metadata: "../ingest/results/oc43/metadata.tsv"
   prepare_sequences:
-    sequences: "../ingest/results/oc43/sequences.fasta"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -84,9 +78,7 @@ oc43:
 hku1:
   reference: "defaults/hku1/reference.fasta"
   genemap: "defaults/hku1/genemap.gff"
-  metadata: "../ingest/results/hku1/metadata.tsv"
   prepare_sequences:
-    sequences: "../ingest/results/hku1/sequences.fasta"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
