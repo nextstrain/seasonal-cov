@@ -38,8 +38,8 @@ viruses:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
-    clock_rate: ""
-    clock_std_dev: ""
+    clock_rate: 0.000250
+    clock_std_dev: 0.00010
     coalescent: "opt"
     date_inference: "marginal"
     clock_filter_iqd: 4
@@ -68,8 +68,8 @@ oc43:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
-    clock_rate: ""
-    clock_std_dev: ""
+    clock_rate: 0.000250
+    clock_std_dev: 0.00010
     coalescent: "opt"
     date_inference: "marginal"
     clock_filter_iqd: 4
