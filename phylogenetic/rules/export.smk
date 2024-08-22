@@ -24,7 +24,7 @@ rule export:
     benchmark:
         "benchmarks/{virus}/export.txt"
     shell:
-        """
+        r"""
         augur export v2 \
           --tree {input.tree:q} \
           --metadata {input.metadata:q} \

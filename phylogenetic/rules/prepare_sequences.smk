@@ -19,7 +19,7 @@ rule download:
         sequences_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/sequences.fasta.zst",
         metadata_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/metadata.tsv.zst",
     shell:
-        """
+        r"""
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
         curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
         """
@@ -33,7 +33,7 @@ rule decompress:
         sequences="data/{virus}/sequences.fasta",
         metadata="data/{virus}/metadata.tsv",
     shell:
-        """
+        r"""
         zstd -d -c {input.sequences} > {output.sequences}
         zstd -d -c {input.metadata} > {output.metadata}
         """
@@ -55,7 +55,7 @@ rule filter:
         subsample_max_sequences=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["subsample_max_sequences"],
         min_length=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["min_length"],
     shell:
-        """
+        r"""
         augur filter \
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
@@ -82,7 +82,7 @@ rule align:
     benchmark:
         "benchmarks/{virus}/align.txt"
     shell:
-        """
+        r"""
         (
           nextclade run \
               --input-ref {input.reference:q} \

@@ -21,7 +21,7 @@ rule ancestral:
     params:
         inference=lambda wildcards: config[wildcards.virus]["annotate_phylogeny"]["inference"],
     shell:
-        """
+        r"""
         augur ancestral \
             --tree {input.tree:q} \
             --alignment {input.alignment:q} \
@@ -43,7 +43,7 @@ rule translate:
     benchmark:
         "benchmarks/{virus}/translate.txt"
     shell:
-        """
+        r"""
         augur translate \
             --tree {input.tree:q} \
             --ancestral-sequences {input.node_data:q} \

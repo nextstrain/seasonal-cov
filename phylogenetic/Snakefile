@@ -23,7 +23,7 @@ rule clean:
             "results",
             ]
     shell:
-        """
+        r"""
         rm -rfv {params.targets}
         """
 
