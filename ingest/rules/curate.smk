@@ -21,7 +21,7 @@ rule fetch_general_geolocation_rules:
     params:
         geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
-        """
+        r"""
         curl {params.geolocation_rules_url:q} \
           > {output.general_geolocation_rules:q} \
          2> {log:q}
@@ -39,7 +39,7 @@ rule concat_geolocation_rules:
     benchmark:
         "benchmarks/concat_geolocation_rules.txt"
     shell:
-        """
+        r"""
         cat {input.general_geolocation_rules:q} {input.local_geolocation_rules:q} \
           > {output.all_geolocation_rules:} \
          2> {log:q}
@@ -89,7 +89,7 @@ rule curate:
         sequence_field=config["curate"]["output_sequence_field"],
     shell:
         # note: params.field_map intentionally not quoted
-        """
+        r"""
         (
           cat {input.sequences_ndjson:q} \
             | augur curate rename \
@@ -133,7 +133,7 @@ rule subset_metadata:
     params:
         metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
-        """
+        r"""
         tsv-select -H -f {params.metadata_fields:q} \
             {input.metadata:q} \
           > {output.subset_metadata:q} \

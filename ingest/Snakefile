@@ -28,7 +28,7 @@ else:
         output:
             metadata="results/{virus}/metadata.tsv",
         shell:
-            """
+            r"""
             mv {input.metadata:q} {output.metadata:q}
             """
 
@@ -42,7 +42,7 @@ rule clean:
             "results",
             ]
     shell:
-        """
+        r"""
         rm -rfv {params.targets}
         """
 

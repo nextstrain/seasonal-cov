@@ -18,7 +18,7 @@ rule tree:
     benchmark:
         "benchmarks/{virus}/tree.txt"
     shell:
-        """
+        r"""
         augur tree \
             --alignment {input.alignment:q} \
             --output {output.tree:q} \
@@ -46,7 +46,7 @@ rule refine:
         clock_filter_iqd=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"],
     shell:
         # TODO move this conditional logic up into the params lambda (?)
-        """
+        r"""
         (
           if [ "{wildcards.virus}" == "229e" ] || [ "{wildcards.virus}" == "oc43" ]; then
               echo "Estimating clock rate for {wildcards.virus}"
