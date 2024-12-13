@@ -38,11 +38,16 @@
   },
   "filters": [
     "country",
-    "region"
+    "region",
+    "author"
   ],
   "panels": [
     "tree",
     "map",
-    "entropy"
+    "entropy",
+    "frequencies"
+  ],
+  "metadata_columns": [
+    "author"
   ]
 }
