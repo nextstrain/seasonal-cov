@@ -58,6 +58,6 @@ rule refine:
             --coalescent {params.coalescent:q} \
             --date-confidence \
             --date-inference {params.date_inference:q} \
-            --clock-filter-iqd {params.clock_filter_iqd:q}
+            --clock-filter-iqd {params.clock_filter_iqd:q} \
           &> {log:q}
         """
