@@ -45,7 +45,7 @@ curate:
     Geographic Location: location
     Isolate Collection date: date
     Host Name: host
-    Submitter Names: authors
+    Submitter Names: full_authors
     Submitter Affiliation: institution
     SRA Accessions: sra_accession
 
@@ -93,13 +93,13 @@ curate:
     fields: ["region", "country", "division", "location"]
 
   # Metadata field that contains the list of authors associated with the sequence
-  authors_field: "authors"
+  authors_field: "full_authors"
 
   # Default value to use if the authors field is empty
   authors_default_value: "?"
 
   # Name to use for the generated abbreviated authors field
-  abbr_authors_field: "abbr_authors"
+  abbr_authors_field: "authors"
 
   # The ID field in the metadata to use to merge the manual annotations
   annotations_id: "strain"
@@ -119,6 +119,6 @@ curate:
     - country
     - host
     - sra_accession
-    - abbr_authors
+    - full_authors
     - authors
     - institution
