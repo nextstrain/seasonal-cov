@@ -30,3 +30,12 @@ ON461778.1 # Chow et al - excluding these strains improves rooting of the tree
 ON461779.1 # Chow et al - excluding these strains improves rooting of the tree
 ON461780.1 # Chow et al - excluding these strains improves rooting of the tree
 ON461781.1 # Chow et al - excluding these strains improves rooting of the tree
+
+# exclude sequences with >6000Ns and/or <80% coverage
+OY757708.1 # 27.8k Ns, 8.3% coverage
+OY757859.1 # 26.6k Ns, 10.7% coverage
+KF430196.1 # 8446 Ns, 70.4% coverage
+KF850450.2 # 8105 Ns, 71.7% coverage
+ON461767.1 # 7302 Ns, 75.0% coverage
+OY757702.1 # 6770 Ns, 77.3% coverage
+MW587043.1 # 6072 Ns, 78.9% coverage
