@@ -45,31 +45,19 @@ rule refine:
         date_inference=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["date_inference"],
         clock_filter_iqd=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"],
     shell:
-        # TODO move this conditional logic up into the params lambda (?)
         r"""
-        (
-          if [ "{wildcards.virus}" == "229e" ] || [ "{wildcards.virus}" == "oc43" ]; then
-              echo "Estimating clock rate for {wildcards.virus}"
-              clock_rate=""
-              clock_std_dev=""
-          else
-              echo "Setting clock rate at {params.clock_rate} with std dev {params.clock_std_dev} for {wildcards.virus}"
-              clock_rate="--clock-rate {params.clock_rate}"
-              clock_std_dev="--clock-std-dev {params.clock_std_dev}"
-          fi
-
-          augur refine \
-              --tree {input.tree:q} \
-              --alignment {input.alignment:q} \
-              --metadata {input.metadata:q} \
-              --output-tree {output.tree:q} \
-              --output-node-data {output.node_data:q} \
-              --timetree \
-              $clock_rate \
-              $clock_std_dev \
-              --coalescent {params.coalescent:q} \
-              --date-confidence \
-              --date-inference {params.date_inference:q} \
-              --clock-filter-iqd {params.clock_filter_iqd:q}
-        ) 2>{log:q}
+        augur refine \
+            --tree {input.tree:q} \
+            --alignment {input.alignment:q} \
+            --metadata {input.metadata:q} \
+            --output-tree {output.tree:q} \
+            --output-node-data {output.node_data:q} \
+            --timetree \
+            --clock-rate {params.clock_rate} \
+            --clock-std-dev {params.clock_std_dev} \
+            --coalescent {params.coalescent:q} \
+            --date-confidence \
+            --date-inference {params.date_inference:q} \
+            --clock-filter-iqd {params.clock_filter_iqd:q} \
+          &> {log:q}
         """

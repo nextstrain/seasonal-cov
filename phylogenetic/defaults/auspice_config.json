@@ -12,9 +12,14 @@
   ],
   "build_url": "https://github.com/nextstrain/seasonal-cov",
   "colorings": [
-     {
+    {
       "key": "gt",
       "title": "Genotype",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
       "type": "categorical"
     },
     {
@@ -23,8 +28,8 @@
       "type": "categorical"
     },
     {
-      "key": "region",
-      "title": "Region",
+      "key": "author",
+      "title": "Author",
       "type": "categorical"
     }
   ],
@@ -38,11 +43,16 @@
   },
   "filters": [
     "country",
-    "region"
+    "region",
+    "author"
   ],
   "panels": [
     "tree",
     "map",
-    "entropy"
+    "entropy",
+    "frequencies"
+  ],
+  "metadata_columns": [
+    "author"
   ]
 }

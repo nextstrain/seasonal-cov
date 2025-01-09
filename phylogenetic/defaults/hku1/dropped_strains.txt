@@ -1,0 +1,41 @@
+ON136168.1 # Chow et al - excluding these strains improves rooting of the tree
+ON136169.1 # Chow et al - excluding these strains improves rooting of the tree
+ON136170.1 # Chow et al - excluding these strains improves rooting of the tree
+ON136171.1 # Chow et al - excluding these strains improves rooting of the tree
+ON136172.1 # Chow et al - excluding these strains improves rooting of the tree
+ON136173.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461755.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461756.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461757.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461758.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461759.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461760.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461761.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461762.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461763.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461764.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461765.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461766.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461768.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461769.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461770.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461771.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461772.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461773.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461774.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461775.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461776.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461777.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461778.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461779.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461780.1 # Chow et al - excluding these strains improves rooting of the tree
+ON461781.1 # Chow et al - excluding these strains improves rooting of the tree
+
+# exclude sequences with >6000Ns and/or <80% coverage
+OY757708.1 # 27.8k Ns, 8.3% coverage
+OY757859.1 # 26.6k Ns, 10.7% coverage
+KF430196.1 # 8446 Ns, 70.4% coverage
+KF850450.2 # 8105 Ns, 71.7% coverage
+ON461767.1 # 7302 Ns, 75.0% coverage
+OY757702.1 # 6770 Ns, 77.3% coverage
+MW587043.1 # 6072 Ns, 78.9% coverage
