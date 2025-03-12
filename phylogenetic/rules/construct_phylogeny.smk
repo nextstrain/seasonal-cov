@@ -39,6 +39,7 @@ rule refine:
     benchmark:
         "benchmarks/{virus}/refine.txt"
     params:
+        root=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["root"],
         clock_rate=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_rate"],
         clock_std_dev=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_std_dev"],
         coalescent=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["coalescent"],
@@ -53,6 +54,7 @@ rule refine:
             --output-tree {output.tree:q} \
             --output-node-data {output.node_data:q} \
             --timetree \
+            --root {params.root:q} \
             --clock-rate {params.clock_rate} \
             --clock-std-dev {params.clock_std_dev} \
             --coalescent {params.coalescent:q} \

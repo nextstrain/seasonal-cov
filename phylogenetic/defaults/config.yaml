@@ -29,6 +29,7 @@ tip_frequencies:
 #   min_length
 # construct_phylogeny = parameters related to tree building pipeline
 #   # augur refine param values
+#   root
 #   clock_rate
 #   clock_std_dev
 #   coalescent
@@ -45,6 +46,7 @@ tip_frequencies:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000250
     clock_std_dev: 0.00010
     coalescent: "opt"
@@ -60,6 +62,7 @@ nl63:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000120
     clock_std_dev: 0.00005
     coalescent: "opt"
@@ -75,6 +78,7 @@ oc43:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000250
     clock_std_dev: 0.00010
     coalescent: "opt"
@@ -90,6 +94,7 @@ hku1:
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "mid_point"
     clock_rate: 0.000120
     clock_std_dev: 0.00005
     coalescent: "opt"
