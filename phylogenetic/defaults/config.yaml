@@ -42,6 +42,7 @@ tip_frequencies:
   reference: "defaults/229e/reference.fasta"
   genemap: "defaults/229e/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -58,6 +59,7 @@ nl63:
   reference: "defaults/nl63/reference.fasta"
   genemap: "defaults/nl63/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -74,6 +76,7 @@ oc43:
   reference: "defaults/oc43/reference.fasta"
   genemap: "defaults/oc43/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
@@ -90,6 +93,7 @@ hku1:
   reference: "defaults/hku1/reference.fasta"
   genemap: "defaults/hku1/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens' 'authors=Hikmat et al.'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
