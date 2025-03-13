@@ -29,6 +29,7 @@ tip_frequencies:
 #   min_length
 # construct_phylogeny = parameters related to tree building pipeline
 #   # augur refine param values
+#   root
 #   clock_rate
 #   clock_std_dev
 #   coalescent
@@ -41,10 +42,12 @@ tip_frequencies:
   reference: "defaults/229e/reference.fasta"
   genemap: "defaults/229e/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000250
     clock_std_dev: 0.00010
     coalescent: "opt"
@@ -56,10 +59,12 @@ nl63:
   reference: "defaults/nl63/reference.fasta"
   genemap: "defaults/nl63/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000120
     clock_std_dev: 0.00005
     coalescent: "opt"
@@ -71,10 +76,12 @@ oc43:
   reference: "defaults/oc43/reference.fasta"
   genemap: "defaults/oc43/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "best"
     clock_rate: 0.000250
     clock_std_dev: 0.00010
     coalescent: "opt"
@@ -86,10 +93,12 @@ hku1:
   reference: "defaults/hku1/reference.fasta"
   genemap: "defaults/hku1/genemap.gff"
   prepare_sequences:
+    exclude_where: "'host!=Homo sapiens' 'authors=Hikmat et al.'"
     group_by: "country"
     subsample_max_sequences: 4000
     min_length: 20000
   construct_phylogeny:
+    root: "mid_point"
     clock_rate: 0.000120
     clock_std_dev: 0.00005
     coalescent: "opt"
