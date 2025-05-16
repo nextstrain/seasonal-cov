@@ -9,9 +9,12 @@ from NCBI and outputs the clean data as two separate files:
 
 def format_field_map(field_map: dict[str, str]) -> str:
     """
-    Format dict to `"key1"="value1" "key2=value2"...` for use in shell commands.
+    Format entries to the format expected by `augur curate --field-map`.
+
+    When used in a Snakemake shell block, the list is automatically expanded and
+    spaces are handled by quoted interpolation.
     """
-    return " ".join([f'"{key}"="{value}"' for key, value in field_map.items()])
+    return [f'{key}={value}' for key, value in field_map.items()]
 
 
 # This curate pipeline is based on existing pipelines for pathogen repos using NCBI data.
@@ -50,34 +53,34 @@ rule curate:
     shell:
         # note: params.field_map intentionally not quoted
         r"""
-        (
-          cat {input.sequences_ndjson:q} \
-            | augur curate rename \
-                --field-map {params.field_map} \
-            | augur curate normalize-strings \
-            | augur curate format-dates \
-                --date-fields {params.date_fields:q} \
-                --expected-date-formats {params.expected_date_formats:q} \
-            | augur curate parse-genbank-location \
-                --location-field {params.genbank_location_field:q} \
-            | augur curate titlecase \
-                --titlecase-fields {params.titlecase_fields:q} \
-                --articles {params.articles:q} \
-                --abbreviations {params.abbreviations:q} \
-            | augur curate abbreviate-authors \
-                --authors-field {params.authors_field:q} \
-                --default-value {params.authors_default_value:q} \
-                --abbr-authors-field {params.abbr_authors_field:q} \
-            | augur curate apply-geolocation-rules \
-                --geolocation-rules {input.all_geolocation_rules:q} \
-            | augur curate apply-record-annotations \
-                --annotations {input.annotations:q} \
-                --id-field {params.annotations_id:q} \
-                --output-metadata {output.metadata:q} \
-                --output-fasta {output.sequences:q} \
-                --output-id-field {params.id_field:q} \
-                --output-seq-field {params.sequence_field}
-        ) 2> {log:q}
+        exec &> >(tee {log:q})
+
+        cat {input.sequences_ndjson:q} \
+          | augur curate rename \
+              --field-map {params.field_map:q} \
+          | augur curate normalize-strings \
+          | augur curate format-dates \
+              --date-fields {params.date_fields:q} \
+              --expected-date-formats {params.expected_date_formats:q} \
+          | augur curate parse-genbank-location \
+              --location-field {params.genbank_location_field:q} \
+          | augur curate titlecase \
+              --titlecase-fields {params.titlecase_fields:q} \
+              --articles {params.articles:q} \
+              --abbreviations {params.abbreviations:q} \
+          | augur curate abbreviate-authors \
+              --authors-field {params.authors_field:q} \
+              --default-value {params.authors_default_value:q} \
+              --abbr-authors-field {params.abbr_authors_field:q} \
+          | augur curate apply-geolocation-rules \
+              --geolocation-rules {input.local_geolocation_rules:q} \
+          | augur curate apply-record-annotations \
+              --annotations {input.annotations:q} \
+              --id-field {params.annotations_id:q} \
+              --output-metadata {output.metadata:q} \
+              --output-fasta {output.sequences:q} \
+              --output-id-field {params.id_field:q} \
+              --output-seq-field {params.sequence_field}
         """
 
 
@@ -86,17 +89,18 @@ rule subset_metadata:
         metadata="results/{virus}/all_metadata.tsv",
     output:
         subset_metadata="results/{virus}/subset_metadata.tsv",
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
     log:
         "logs/{virus}/subset_metadata.txt",
     benchmark:
         "benchmarks/{virus}/subset_metadata.txt"
-    params:
-        metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
         r"""
-        csv2tsv --csv-delim $'\t' {input.metadata:q} \
-          | tsv-select -H -f {params.metadata_fields:q} \
-          | csvtk fix-quotes --tabs \
-          > {output.subset_metadata:q} \
-         2> {log:q}
+        exec &> >(tee {log:q})
+
+        csvtk cut -t \
+            -f {params.metadata_fields:q} \
+            {input.metadata:q} \
+        > {output.subset_metadata:q}
         """
