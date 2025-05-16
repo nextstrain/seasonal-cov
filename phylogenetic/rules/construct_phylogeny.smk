@@ -13,6 +13,8 @@ rule tree:
         alignment="results/{virus}/aligned.fasta",
     output:
         tree="results/{virus}/tree_raw.nwk",
+    threads:
+        workflow.cores * 0.5
     log:
         "logs/{virus}/tree.txt",
     benchmark:
@@ -24,7 +26,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --output {output.tree:q} \
-          2>{log:q}
+            --nthreads {threads}
         """
 
 
