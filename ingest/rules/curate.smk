@@ -7,45 +7,6 @@ from NCBI and outputs the clean data as two separate files:
 """
 
 
-# The following two rules can be ignored if you choose not to use the
-# generalized geolocation rules that are shared across pathogens.
-# The Nextstrain team will try to maintain a generalized set of geolocation
-# rules that can then be overridden by local geolocation rules per pathogen repo.
-rule fetch_general_geolocation_rules:
-    output:
-        general_geolocation_rules="data/general-geolocation-rules.tsv",
-    log:
-        "logs/fetch_general_geolocation_rules.txt",
-    benchmark:
-        "benchmarks/fetch_general_geolocation_rules.txt"
-    params:
-        geolocation_rules_url=config["curate"]["geolocation_rules_url"],
-    shell:
-        r"""
-        curl {params.geolocation_rules_url:q} \
-          > {output.general_geolocation_rules:q} \
-         2> {log:q}
-        """
-
-
-rule concat_geolocation_rules:
-    input:
-        general_geolocation_rules="data/general-geolocation-rules.tsv",
-        local_geolocation_rules=config["curate"]["local_geolocation_rules"],
-    output:
-        all_geolocation_rules="data/all-geolocation-rules.tsv",
-    log:
-        "logs/concat_geolocation_rules.txt",
-    benchmark:
-        "benchmarks/concat_geolocation_rules.txt"
-    shell:
-        r"""
-        cat {input.general_geolocation_rules:q} {input.local_geolocation_rules:q} \
-          > {output.all_geolocation_rules:} \
-         2> {log:q}
-        """
-
-
 def format_field_map(field_map: dict[str, str]) -> str:
     """
     Format dict to `"key1"="value1" "key2=value2"...` for use in shell commands.
@@ -63,8 +24,7 @@ def format_field_map(field_map: dict[str, str]) -> str:
 rule curate:
     input:
         sequences_ndjson="data/{virus}/ncbi.ndjson",
-        # Change the geolocation_rules input path if you are removing the above two rules
-        all_geolocation_rules="data/all-geolocation-rules.tsv",
+        local_geolocation_rules=config["curate"]["local_geolocation_rules"],
         annotations="defaults/{virus}/annotations.tsv",
     output:
         metadata="results/{virus}/all_metadata.tsv",
