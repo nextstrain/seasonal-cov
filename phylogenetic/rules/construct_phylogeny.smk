@@ -19,6 +19,8 @@ rule tree:
         "benchmarks/{virus}/tree.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur tree \
             --alignment {input.alignment:q} \
             --output {output.tree:q} \
@@ -47,6 +49,8 @@ rule refine:
         clock_filter_iqd=lambda wildcards: config[wildcards.virus]["construct_phylogeny"]["clock_filter_iqd"],
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur refine \
             --tree {input.tree:q} \
             --alignment {input.alignment:q} \
@@ -60,6 +64,5 @@ rule refine:
             --coalescent {params.coalescent:q} \
             --date-confidence \
             --date-inference {params.date_inference:q} \
-            --clock-filter-iqd {params.clock_filter_iqd:q} \
-          &> {log:q}
+            --clock-filter-iqd {params.clock_filter_iqd:q}
         """

@@ -25,6 +25,8 @@ rule export:
         "benchmarks/{virus}/export.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur export v2 \
           --tree {input.tree:q} \
           --metadata {input.metadata:q} \
@@ -34,8 +36,7 @@ rule export:
           --auspice-config {input.auspice_config:q} \
           --title {params.auspice_title:q} \
           --include-root-sequence \
-          --output {output.auspice_json:q} \
-        2>{log:q}
+          --output {output.auspice_json:q}
         """
 
 rule tip_frequencies:
@@ -53,8 +54,14 @@ rule tip_frequencies:
         max_date = config["tip_frequencies"]["max_date"],
         narrow_bandwidth =config["tip_frequencies"]["narrow_bandwidth"],
         wide_bandwidth = config["tip_frequencies"]["wide_bandwidth"],
+    log:
+        "logs/{virus}/tip_frequencies.txt",
+    benchmark:
+        "benchmarks/{virus}/tip_frequencies.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur frequencies \
             --method kde \
             --tree {input.tree} \

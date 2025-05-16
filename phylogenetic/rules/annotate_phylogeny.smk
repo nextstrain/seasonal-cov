@@ -22,12 +22,13 @@ rule ancestral:
         inference=lambda wildcards: config[wildcards.virus]["annotate_phylogeny"]["inference"],
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur ancestral \
             --tree {input.tree:q} \
             --alignment {input.alignment:q} \
             --output-node-data {output.node_data:q} \
-            --inference {params.inference} \
-          2>{log:q}
+            --inference {params.inference}
         """
 
 
@@ -44,10 +45,11 @@ rule translate:
         "benchmarks/{virus}/translate.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur translate \
             --tree {input.tree:q} \
             --ancestral-sequences {input.node_data:q} \
             --reference-sequence {input.genemap:q} \
-            --output {output.node_data:q} \
-          2>{log:q}
+            --output {output.node_data:q}
         """
