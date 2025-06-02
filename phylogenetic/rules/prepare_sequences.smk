@@ -18,8 +18,14 @@ rule download:
     params:
         sequences_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/sequences.fasta.zst",
         metadata_url="https://data.nextstrain.org/files/workflows/seasonal-cov/{virus}/metadata.tsv.zst",
+    log:
+        "logs/{virus}/download.txt",
+    benchmark:
+        "benchmarks/{virus}/download.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
         curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
         """
@@ -32,8 +38,14 @@ rule decompress:
     output:
         sequences="data/{virus}/sequences.fasta",
         metadata="data/{virus}/metadata.tsv",
+    log:
+        "logs/{virus}/decompress.txt",
+    benchmark:
+        "benchmarks/{virus}/decompress.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         zstd -d -c {input.sequences} > {output.sequences}
         zstd -d -c {input.metadata} > {output.metadata}
         """
@@ -57,6 +69,8 @@ rule filter:
         min_length=lambda wildcards: config[wildcards.virus]["prepare_sequences"]["min_length"],
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         augur filter \
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
@@ -65,8 +79,7 @@ rule filter:
             --output {output.sequences:q} \
             --group-by {params.group_by:q} \
             --subsample-max-sequences {params.subsample_max_sequences:q} \
-            --min-length {params.min_length:q} \
-          2>{log:q}
+            --min-length {params.min_length:q}
         """
 
 
@@ -84,13 +97,13 @@ rule align:
         "benchmarks/{virus}/align.txt"
     shell:
         r"""
-        (
-          nextclade run \
-              --input-ref {input.reference:q} \
-              --input-annotation {input.genemap:q} \
-              --output-fasta - \
-              --output-tsv {output.insertions:q} \
-              {input.sequences:q} \
-          | seqkit seq -i > {output.alignment:q} \
-        ) 2>{log:q}
+        exec &> >(tee {log:q})
+
+        nextclade run \
+            --input-ref {input.reference:q} \
+            --input-annotation {input.genemap:q} \
+            --output-fasta - \
+            --output-tsv {output.insertions:q} \
+            {input.sequences:q} \
+          | seqkit seq -i > {output.alignment:q}
         """
