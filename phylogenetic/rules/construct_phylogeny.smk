@@ -34,7 +34,7 @@ rule refine:
     input:
         tree="results/{virus}/tree_raw.nwk",
         alignment="results/{virus}/aligned.fasta",
-        metadata="data/{virus}/metadata.tsv",
+        metadata="results/{virus}/metadata.tsv",
     output:
         tree="results/{virus}/tree.nwk",
         node_data="results/{virus}/branch_lengths.json",

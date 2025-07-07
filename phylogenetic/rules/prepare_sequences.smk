@@ -58,6 +58,7 @@ rule filter:
         exclude="defaults/{virus}/dropped_strains.txt",
     output:
         sequences="results/{virus}/filtered.fasta",
+        metadata="results/{virus}/metadata.tsv",
     log:
         "logs/{virus}/filter.txt",
     benchmark:
@@ -77,6 +78,7 @@ rule filter:
             --exclude {input.exclude:q} \
             --exclude-where {params.exclude_where} \
             --output-sequences {output.sequences:q} \
+            --output-metadata {output.metadata:q} \
             --group-by {params.group_by:q} \
             --subsample-max-sequences {params.subsample_max_sequences:q} \
             --min-length {params.min_length:q}
