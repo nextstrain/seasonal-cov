@@ -76,7 +76,7 @@ rule filter:
             --metadata {input.metadata:q} \
             --exclude {input.exclude:q} \
             --exclude-where {params.exclude_where} \
-            --output {output.sequences:q} \
+            --output-sequences {output.sequences:q} \
             --group-by {params.group_by:q} \
             --subsample-max-sequences {params.subsample_max_sequences:q} \
             --min-length {params.min_length:q}
