@@ -57,7 +57,8 @@ rule filter:
         metadata="data/{virus}/metadata.tsv",
         exclude="defaults/{virus}/dropped_strains.txt",
     output:
-        sequences="results/{virus}/filtered.fasta",
+        sequences="results/{virus}/filtered_sequences.fasta",
+        metadata="results/{virus}/filtered_metadata.tsv",
     log:
         "logs/{virus}/filter.txt",
     benchmark:
@@ -76,7 +77,8 @@ rule filter:
             --metadata {input.metadata:q} \
             --exclude {input.exclude:q} \
             --exclude-where {params.exclude_where} \
-            --output {output.sequences:q} \
+            --output-sequences {output.sequences:q} \
+            --output-metadata {output.metadata:q} \
             --group-by {params.group_by:q} \
             --subsample-max-sequences {params.subsample_max_sequences:q} \
             --min-length {params.min_length:q}
@@ -85,7 +87,7 @@ rule filter:
 
 rule align:
     input:
-        sequences="results/{virus}/filtered.fasta",
+        sequences="results/{virus}/filtered_sequences.fasta",
         reference=lambda wildcards: config[wildcards.virus]["reference"],
         genemap=lambda wildcards: config[wildcards.virus]["genemap"],
     output:

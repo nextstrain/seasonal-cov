@@ -9,7 +9,7 @@ tree and at least one node data JSON.
 rule export:
     input:
         tree="results/{virus}/tree.nwk",
-        metadata="data/{virus}/metadata.tsv",
+        metadata="results/{virus}/filtered_metadata.tsv",
         branch_lengths="results/{virus}/branch_lengths.json",
         nt_muts="results/{virus}/nt_muts.json",
         aa_muts="results/{virus}/aa_muts.json",
@@ -45,7 +45,7 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{virus}/tree.nwk",
-        metadata = "data/{virus}/metadata.tsv",
+        metadata = "results/{virus}/filtered_metadata.tsv",
     output:
         tip_freq = "auspice/seasonal-cov_{virus}_tip-frequencies.json"
     params:
