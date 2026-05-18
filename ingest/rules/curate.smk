@@ -62,6 +62,7 @@ rule curate:
           | augur curate format-dates \
               --date-fields {params.date_fields:q} \
               --expected-date-formats {params.expected_date_formats:q} \
+              --failure-reporting "warn" \
           | augur curate parse-genbank-location \
               --location-field {params.genbank_location_field:q} \
           | augur curate titlecase \
